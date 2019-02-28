@@ -33,9 +33,9 @@ def game(summa)
     randnum=rand(15)
     puts randnum
     case randnum
-    when 1..5
+    when 0..5
          summa=(summa*0.5)
-    when 6..7
+    when 6..7   
           summa=(summa*0.9)
     when 8..9
            summa=(summa*0.98)
@@ -52,9 +52,10 @@ end
 print "Enter start capital>"
 sum=read_real
 if (checknum(sum))
-if (choice())
-    
-    puts "sum=#{game(sum)}"
+while(choice())   
+    sum=game(sum)
+    puts "Your up capital =#{sum}"
 end
+puts "Your final score=#{sum}"
 end
 
