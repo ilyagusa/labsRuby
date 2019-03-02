@@ -1,15 +1,36 @@
-def chekName(nameSurn,exp)
-        if ((nameSurn.chomp()=="Petr Petrovich") && (exp>5 && exp<15) )
-                puts "Профессия:Заслуженный Руководитель"
-        elsif ((nameSurn.chomp()=="Petr Petrovich") && exp>15)
-                puts "Профессия:Известный Руководитель"
-        elsif((nameSurn.chomp()=="Petr Petrovich") && exp.to_i<=5)  
-                puts "Профессия:Руководитель"
-        else 
-                return puts "debil"
-               exit
+def chekProfession(nameSurn,expstr,mail,strage)
+        str=""
+        str+=expstr.to_s
+        str+=strage.to_s
+        if (nameSurn.chomp()=="Petr Petrovich")
+                str+=" Руководитель"
         end
+        if mail.include? "code"
+                str+=" Инженер"
+        end
+        return str
 end
+
+def chekExp(exp)
+        str=""
+        if exp>5 && exp<=15
+                str="Заслуженный"
+        elsif exp>15 
+                str="Известный"
+        elsif exp<2
+                str="Стажёр"
+        end
+        return str
+end
+
+def chekAge(age)
+        str=""
+        if ((age>=45) && (age<=60))
+                str="Бывалый"
+        end
+        return str
+end
+
 
 
 def getStr()
@@ -21,7 +42,7 @@ def getStr()
     end
 end
     
-    def getAge()
+def getAge()
         age=gets
         return nil if age.nil?
         age=Integer(age)
@@ -31,7 +52,7 @@ end
         print "invalid Age"
         exit
         end
-    end
+end
     
     
     def getExp()
@@ -61,4 +82,7 @@ end
     Expirience=getExp()
     puts "Exp:#{Expirience}"
 
-    chekName(NameAndSurname,Expirience)
+
+    a=chekExp(Expirience)
+    b=chekAge(Age)
+  puts "PROFESSION :::#{ chekProfession(NameAndSurname,a,Mail,b)}"
