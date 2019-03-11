@@ -19,3 +19,12 @@ autopark=Fleet.new
 autopark.add(n1_auto)
 autopark.add(n2_auto)
 autopark.add(n3_auto)
+autopark.add(n4_auto)
+autopark.add(n5_auto)
+autopark.add(n6_auto)
+autopark.add(n7_auto)
+puts "AVGEXPENSE=#{autopark.avgexpense}"
+puts "countbrand=#{autopark.count_brand("audi")}"
+
+puts "countmodel=#{autopark.count_model("a4")}"
+puts "AvgExpForBrand=#{autopark.avgexpense_for_brand("audi")}"
