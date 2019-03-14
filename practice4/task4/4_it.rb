@@ -6,14 +6,6 @@ loop do
     break  if current.nil?
     array<<Integer(current)
 end
-i=0
-while(i<array.size)
-  if(array[i]==0)
-    array.delete_at(i)
-    i-=1
-  end
-  i+=1
-end
-
+array.delete_if {|value| value==0}
 print array
 

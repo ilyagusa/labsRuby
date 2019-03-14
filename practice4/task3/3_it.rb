@@ -9,7 +9,7 @@ end
 
 def printed(polinom1)
     size=(polinom1.size-1)
-    for value in polinom1 do
+    polinom1.each do |value|
         if (size>=1)
             print"#{value}*x^#{size}"
             print "+"
@@ -23,10 +23,10 @@ end
 def calculation(polinom1,tochka)
     size=polinom1.size
     sum=0
-    for value in polinom1 do
-        temp=Integer(tochka**(size-1))
-        sum+=temp*value
-        size-=1
+    polinom1.each do |value|
+      temp=Integer(tochka**(size-1))
+      sum+=temp*value
+      size-=1
     end
     puts "ValuePolinom=#{sum}"
 end
@@ -39,7 +39,7 @@ def derivative(polinom1, tochka)
       puts "sum=0"
       return
     end
-    for value in polinom1 do
+    polinom1.each do |value|
         temp=Integer(tochka**(size-2))
         sum+=temp*value*(size-1)
         break if size==0
