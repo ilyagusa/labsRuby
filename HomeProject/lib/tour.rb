@@ -18,6 +18,6 @@ class Tour
   end
 
   def to_s
-    "\n#{@info}Duration:#{@dur}\nPrice:#{@price}NumTourist:#{@num_tourists}\nListLandmark: #{@list}"
+    "\n#{@info}Duration:#{@dur}\nPrice:#{@price}\nNumTourist:#{@num_tourists}\nListLandmark: #{@list}"
   end
 end

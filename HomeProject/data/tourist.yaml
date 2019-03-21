@@ -1,0 +1,17 @@
+- Country: Mexico
+  Name: Ilya
+  Surname: Gusev
+  Patronymic: Sergeevich
+  Landmark: kreml
+  Type: Bus
+  Pricemin: 100
+  Pricemax: 300
+
+- Country: Mexico
+  Name: Anna
+  Surname: Guseva
+  Patronymic: Michailovna
+  Landmark: big-ben
+  Type: Bus
+  Pricemin: 100
+  Pricemax: 300
