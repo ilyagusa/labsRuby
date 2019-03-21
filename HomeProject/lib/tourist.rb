@@ -11,6 +11,6 @@ class Tourist
   end
 
   def to_s
-    "TOURIST:\n#{@fio}\n<Wishes:#{@info}>\nLandmark:#{@land_mark}\nRange Price(#{@min_price},#{@max_price})"
+    "TOURIST:\n#{@fio}\nWishes:\n<\n#{@info}>\nLandmark:#{@land_mark}\nRange Price(#{@min_price},#{@max_price})"
   end
 end
