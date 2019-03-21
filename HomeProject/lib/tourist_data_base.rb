@@ -13,9 +13,8 @@ class TouristDB
   end
 
   def to_s
-    str=""
-    @tourist_db.each_with_index { |value, index| str+="#{index + 1} TOURIST:#{value}\n\n" }
-    return str
+    str = ''
+    @tourist_db.each_with_index { |value, index| str += "#{index + 1} TOURIST:#{value}\n\n" }
+    str
   end
 end
-

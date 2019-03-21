@@ -13,9 +13,8 @@ class TourDB
   end
 
   def to_s
-    str=""
-    @tour_db.each_with_index { |value, index| str+="#{index + 1} TOUR:#{value}\n\n" }
-    return str
+    str = ''
+    @tour_db.each_with_index { |value, index| str += "#{index + 1} TOUR:#{value}\n\n" }
+    str
   end
 end
-
