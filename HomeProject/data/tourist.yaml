@@ -23,7 +23,7 @@
   Landmark: shopsha
   Type: Bus
   Pricemin: 0
-  Pricemax: 10000
+  Pricemax: 100
 
 - Country: Russia
   Name: Andrey

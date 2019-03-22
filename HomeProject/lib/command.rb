@@ -53,22 +53,34 @@ module Command
     puts tourist_db
   end
 
+  def self.whyprice(price, min_p, max_p)
+    true if price <= max_p && price >= min_p
+  end
+
   def self.fill_tour(tour_db, tourists_db)
     tour_group = {}
     tour_db.each_with_index do |t, i|
       mass = []
       tourists_db.each_with_index do |t_t, i1|
-        s
-        next unless t_t.occupancy == true && t.num_tourists >= 1 && (t.landmarks.include? t_t.land_mark)
-
-        t.info.gen == t_t.info.gen && (t.price >= t_t.min_p && t.price <= t_t.max_p)
+        next unless t_t.occupancy == true && t.num_tourists >= 1 && (t.landmarks.include? t_t.land_mark) &&
+                    t.info.gen == t_t.info.gen && Command.whyprice(t.price, t_t.min_p, t_t.max_p)
 
         t_t.occupancy = false
-        mass << "#{i1 + 1} "
+        mass << "#{i1 + 1} tourist"
         t.num_tourists -= 1
       end
       tour_group["#{i + 1} TOUR"] = mass
     end
     puts tour_group
   end
+
+
+
+  
+
+
+
+
+
+
 end
