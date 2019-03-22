@@ -8,14 +8,14 @@ class Core
   include Command
   def initialize
     @tour_db = TourDB.new
-    @tourist = TouristDB.new
+    @tourist_db = TouristDB.new
   end
 
   def run
     @tour_db = Input.read_filetours
-    @tourist = Input.read_filetourists
+    @tourist_db = Input.read_filetourists
     puts @tour_db
-    puts @tourist
+    puts @tourist_db
     menu
   end
 
@@ -28,9 +28,11 @@ class Core
     when '2'
       Command.remove_tour(@tour_db)
     when '3'
-      Command.add_tourist(@tourist)
+      Command.add_tourist(@tourist_db)
     when '4'
-      Command.remove_tourist(@tourist)
+      Command.remove_tourist(@tourist_db)
+    when '5'
+      Command.fill_tour_group(@tour_db,@tourist_db)
     end
   end
 end

@@ -55,9 +55,28 @@ module Command
 
 
 
-  def fill_tour_group(tour_db,tourist_db)
+  def self.fill_tour_group(tour_db,tourist_db)
+    puts "TOUR GROUPS"
+    tourist_db_copy=tourist_db
     tour_group=Hash.new
-          
+    tour_db.each_with_index do |tour,i|
+      mass=[]
+      tourist_db_copy.each_with_index do |tourist,i1|
+        if(tourist.occupancy==true && tour.num_tourists>=1)
+          if(tour.info.general==tourist.info.general && (tour.price>=tourist.min_price  && tour.price<=tourist.max_price))
+            tour.each do |landmark|
+              if(landmark==tourist.land_mark)
+                tourist.occupancy=false
+                mass<<("#{i1+1} tourist")
+                tour.num_tourists-=1
+              end
+            end
+          end
+        end
+      end
+      tour_group["#{i+1} TOUR"]=mass
+    end
+    puts tour_group
   end
 
 

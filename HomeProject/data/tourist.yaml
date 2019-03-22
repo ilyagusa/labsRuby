@@ -4,14 +4,23 @@
   Patronymic: Sergeevich
   Landmark: kreml
   Type: Bus
-  Pricemin: 100
-  Pricemax: 300
+  Pricemin: 2000
+  Pricemax: 4000
 
-- Country: Mexico
+- Country: Russia
   Name: Anna
   Surname: Guseva
   Patronymic: Michailovna
-  Landmark: big-ben
+  Landmark: shopsha
   Type: Bus
-  Pricemin: 100
-  Pricemax: 300
+  Pricemin: 0
+  Pricemax: 10000
+
+- Country: Russia
+  Name: Andrey
+  Surname: Travnikov
+  Patronymic: Kekovich
+  Landmark: yaroslavl
+  Type: Bus
+  Pricemin: 0
+  Pricemax: 10000

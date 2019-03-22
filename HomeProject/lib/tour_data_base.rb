@@ -17,6 +17,10 @@ class TourDB
     @tour_db.delete_at(index)
   end
 
+  def each_with_index
+    @tour_db.each_with_index { |tour, index| yield(tour, index) }
+  end
+
   def to_s
     str = ''
     @tour_db.each_with_index { |value, index| str += "#{index + 1} TOUR:#{value}\n\n" }

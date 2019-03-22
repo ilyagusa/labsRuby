@@ -15,7 +15,7 @@ class Tour
   end
 
   def each
-    @list.each_with_index { |value, index| print "#{index}LandMark#{value}\n" }
+    @list.each { |value| yield(value) }
   end
 
   def to_s
