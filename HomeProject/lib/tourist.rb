@@ -1,5 +1,6 @@
 require_relative 'info'
 require_relative 'person'
+# 1
 class Tourist
   attr_accessor :info, :fio, :land_mark, :min_price, :max_price
   def initialize(info, fio, land_mark, min_price, max_price)

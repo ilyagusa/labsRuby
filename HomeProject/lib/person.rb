@@ -1,3 +1,4 @@
+# 1
 class Person
   attr_accessor :name, :surname, :patronymic
   def initialize(name, surname, patronymic)

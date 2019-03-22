@@ -4,6 +4,7 @@
   Type: Bus
   Price: 3000
   Num: 10
+  
 - Country: Russia
   Landmark: [les,ne_les]
   Duration: 365

@@ -1,3 +1,4 @@
 require_relative 'core'
 
-Core.new
+a = Core.new
+a.run

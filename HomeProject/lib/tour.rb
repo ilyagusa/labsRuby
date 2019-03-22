@@ -1,4 +1,5 @@
 require_relative 'info'
+# 1
 class Tour
   attr_accessor :info, :dur, :price, :num_tourists, :list
   def initialize(info, dur, price, num_tourists, list)

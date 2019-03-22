@@ -1,4 +1,5 @@
 require_relative 'tour'
+# 1
 class TourDB
   def initialize
     @tour_db = []
@@ -10,6 +11,10 @@ class TourDB
 
   def tour(index)
     @tour_db[index]
+  end
+
+  def remove(index)
+    @tour_db.delete_at(index)
   end
 
   def to_s

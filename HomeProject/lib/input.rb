@@ -4,12 +4,12 @@ require_relative 'tour'
 require_relative 'info'
 require_relative 'tourist_data_base'
 require_relative 'person'
-
+#1
 module Input 
 
-
-def self.need_num
+def self.need_num(str)
   loop do
+    print str
     current=gets
     if current.to_i<=0
         current="a";
@@ -20,17 +20,17 @@ def self.need_num
     current=Float(current)
     return current
     rescue ArgumentError => _exception 
-        puts "Это не число или данное число не положительное, попробуйте еще раз"
+        puts "Это не число или данное отрицательное, попробуйте еще раз"
   end
 end
 
 
 def self.need_string(str)
-puts str
   loop do
+    print str
     line=gets
     if line.nil?
-      puts "Вы ничего не ввели,введите требуемоему значение"
+      puts "Вы ничего не ввели,введите требуемое значение"
       next
     end
     line=line.strip
@@ -38,7 +38,7 @@ puts str
       puts "Вы ничего не ввели, введите требуемое значение"
       next
     end
-    return line
+    return line.chomp
   end
 end
 
@@ -80,8 +80,6 @@ def self.read_filetourists
     end
     return tdb
 end
-
-
 
 
 

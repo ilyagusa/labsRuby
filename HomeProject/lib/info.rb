@@ -1,3 +1,4 @@
+# 1
 class Info
   attr_accessor :type_transport, :country
   def initialize(country, type_transport)
