@@ -6,8 +6,8 @@ class Info
     @type_t = type_t
   end
 
-  def general
-    str=country+type_t
+  def gen
+    country + type_t
   end
 
   def to_s

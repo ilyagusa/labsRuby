@@ -14,8 +14,9 @@ class Tour
     @list.push(elm)
   end
 
-  def each
-    @list.each { |value| yield(value) }
+  def landmarks
+    str = ''
+    @list.each { |value| str += "#{value} " }
   end
 
   def to_s

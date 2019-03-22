@@ -24,7 +24,7 @@ module Command
   end
 
   def self.remove_tour(tour_db)
-    index = Input.need_num('Index for remove tour>')
+    index = Input.need_num('Index for remove t>')
     tour_db.remove(index - 1)
     puts tour_db
   end
@@ -48,37 +48,27 @@ module Command
   end
 
   def self.remove_tourist(tourist_db)
-    index = Input.need_num('Index for remove tourist>')
+    index = Input.need_num('Index for remove t_t>')
     tourist_db.remove(index - 1)
     puts tourist_db
   end
 
+  def self.fill_tour(tour_db, tourists_db)
+    tour_group = {}
+    tour_db.each_with_index do |t, i|
+      mass = []
+      tourists_db.each_with_index do |t_t, i1|
+        s
+        next unless t_t.occupancy == true && t.num_tourists >= 1 && (t.landmarks.include? t_t.land_mark)
 
+        t.info.gen == t_t.info.gen && (t.price >= t_t.min_p && t.price <= t_t.max_p)
 
-  def self.fill_tour_group(tour_db,tourist_db)
-    puts "TOUR GROUPS"
-    tourist_db_copy=tourist_db
-    tour_group=Hash.new
-    tour_db.each_with_index do |tour,i|
-      mass=[]
-      tourist_db_copy.each_with_index do |tourist,i1|
-        if(tourist.occupancy==true && tour.num_tourists>=1)
-          if(tour.info.general==tourist.info.general && (tour.price>=tourist.min_price  && tour.price<=tourist.max_price))
-            tour.each do |landmark|
-              if(landmark==tourist.land_mark)
-                tourist.occupancy=false
-                mass<<("#{i1+1} tourist")
-                tour.num_tourists-=1
-              end
-            end
-          end
-        end
+        t_t.occupancy = false
+        mass << "#{i1 + 1} "
+        t.num_tourists -= 1
       end
-      tour_group["#{i+1} TOUR"]=mass
+      tour_group["#{i + 1} TOUR"] = mass
     end
     puts tour_group
   end
-
-
-
 end

@@ -1,5 +1,5 @@
-require_relative 'tour_data_base'
 require_relative 'tourist_data_base'
+require_relative 'tour_data_base'
 require_relative 'input'
 require_relative 'command'
 # 1
@@ -32,7 +32,7 @@ class Core
     when '4'
       Command.remove_tourist(@tourist_db)
     when '5'
-      Command.fill_tour_group(@tour_db,@tourist_db)
+      Command.fill_tour(@tour_db, @tourist_db)
     end
   end
 end
