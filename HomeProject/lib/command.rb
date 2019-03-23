@@ -3,14 +3,14 @@ require_relative 'tour'
 require_relative 'tourist'
 require_relative 'info'
 require_relative 'person'
-# 1
+# function
 module Command
   def self.whyprice(price, min_p, max_p)
     true if price <= max_p && price >= min_p
   end
 
-  # check on the coincidence of all the parameters to choose a tour for the tourist
   def self.fill_tour(tour_db, tourists_db)
+    puts "selected filling  tour for tourists"
     tour_group = {}
     tour_db.each_with_index do |t, i|
       mass = []
@@ -30,11 +30,12 @@ module Command
   end
 
   def self.tour_for_tourist(tour_db, size, tour_group)
+    puts 'selected print tour for tourist'
     return puts 'First you need to distribute the tourists into groups' if tour_group.empty?
 
     touristindex = nil
     loop do
-      touristindex = Input.need_num('input true index>')
+      touristindex = Input.need_num('input true index tourist>')
       break if touristindex <= size
     end
     puts touristindex
@@ -47,6 +48,7 @@ module Command
   end
 
   def self.puts_tour(tour_db)
+    puts 'selected print tour by parameter'
     value = Command.tour_parameter
     case value[0]
     when 'price'
@@ -74,9 +76,12 @@ module Command
   end
 
   def self.puts_list_tourist(size, tourist_db, tour_group)
+    puts 'selected print all tourist in tour'
+    return puts 'First you need to distribute the tourists into groups' if tour_group.empty?
+
     tour_index = nil
     loop do
-      tour_index = Input.need_num('input true index>')
+      tour_index = Input.need_num('input true index tour>')
       break if tour_index <= size
     end
     tour_group.each do |key, value|

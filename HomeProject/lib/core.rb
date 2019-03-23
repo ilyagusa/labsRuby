@@ -25,10 +25,10 @@ class Core
   def menu
     puts "\nMENU:::\n1/3-add(Tour/Tourist)\n2/4-remove(Tour/Tourist)"
     puts "5-select tour\n6-print tour for tourist\n7-print tour by param\n8-print tourists by tour\n"
-    print 'exit-end programm\nSelect command>>>'
+    print "exit-end programm\n"
     loop do
-      a = gets.chomp
       print 'Select command>>>'
+      a = gets.chomp
       case a
       when '1'
         CommandAddRemove.add_tour(@tour_db)
@@ -47,7 +47,7 @@ class Core
       when '7'
         Command.puts_tour(@tour_db)
       when '8'
-        Command.puts_list_tourist(@tour_db.size, @tourist_db, tour_group)
+        Command.puts_list_tourist(@tour_db.size, @tourist_db, @tour_group)
       when 'exit'
         break
       else puts 'Uncorrect command'
