@@ -17,6 +17,10 @@ class TourDB
     @tour_db.delete_at(index)
   end
 
+  def size
+    @tour_db.size
+  end
+
   def each_with_index
     @tour_db.each_with_index { |tour, index| yield(tour, index) }
   end

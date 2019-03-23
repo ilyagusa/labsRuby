@@ -25,9 +25,9 @@ def self.need_num(str)
 end
 
 
-def self.need_parameter(str)
+def self.need_parameter()
   loop do
-    print str
+    print 'why parameter for print tour(price/country/landmark)>'
     line=gets
     if line.nil? || line.strip.empty?
       puts "Вы ничего не ввели,введите требуемое значение"

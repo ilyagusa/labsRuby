@@ -4,7 +4,7 @@ require_relative 'tourist'
 require_relative 'info'
 require_relative 'person'
 # 1
-module Command_add_remove
+module CommandAddRemove
   def self.add_tour(tour_db)
     landmarks = []
     country = Input.need_string('Country or city>')
@@ -52,3 +52,4 @@ module Command_add_remove
     tourist_db.remove(index - 1)
     puts tourist_db
   end
+end

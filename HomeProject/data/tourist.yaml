@@ -8,13 +8,13 @@
   Pricemax: 4000
 
 - Country: Mexico
-  Name: Ilya
-  Surname: Gusev
-  Patronymic: Sergeevich
+  Name: Andrey
+  Surname: Kostenko
+  Patronymic: xz
   Landmark: kreml
   Type: Bus
-  Pricemin: 2000
-  Pricemax: 4000
+  Pricemin: 1000
+  Pricemax: 5000
 
 - Country: Russia
   Name: Anna
