@@ -38,8 +38,8 @@ class Core
         puts tour_group
       when '6'
         Command.tour_for_tourist(@tour_db, @tourist_db.size, tour_group)
-      when 'exit'
-        break
+      when '7'
+        Command.puts_tour(@tour_db)
       end
     end
   end

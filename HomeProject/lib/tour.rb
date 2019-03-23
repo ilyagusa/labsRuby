@@ -10,6 +10,10 @@ class Tour
     @list = list
   end
 
+  def country
+    @info.country
+  end
+
   def push(elm)
     @list.push(elm)
   end
@@ -17,6 +21,11 @@ class Tour
   def landmarks
     str = ''
     @list.each { |value| str += "#{value} " }
+  end
+
+  def landmarksarray
+    str = []
+    @list.each { |value| str << value.to_s }
   end
 
   def to_s

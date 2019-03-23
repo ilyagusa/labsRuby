@@ -25,6 +25,24 @@ def self.need_num(str)
 end
 
 
+def self.need_parameter(str)
+  loop do
+    print str
+    line=gets
+    if line.nil? || line.strip.empty?
+      puts "Вы ничего не ввели,введите требуемое значение"
+      next
+    end
+    line=line.chomp
+    if(line=='price' || line == 'country' || line == 'landmark')
+      return line
+    else 
+      puts "Неверный параметр"
+    end
+  end
+end
+
+
 def self.need_string(str)
   loop do
     print str
@@ -41,6 +59,9 @@ def self.need_string(str)
     return line.chomp
   end
 end
+
+
+
 
 
 def self.read_filetours

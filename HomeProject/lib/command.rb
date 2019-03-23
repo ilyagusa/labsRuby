@@ -77,10 +77,9 @@ module Command
 
   def self.tour_for_tourist(tour_db, size, tour_group)
     return puts 'First you need to distribute the tourists into groups' if tour_group.empty?
-
     touristindex = nil
     loop do
-      touristindex = Input.need_num('input true index')
+      touristindex = Input.need_num('input true index>')
       break if touristindex <= size
     end
     puts touristindex
@@ -90,5 +89,32 @@ module Command
         puts tour_db.tour(key.to_i - 1)
       end
     end
+  end
+
+  def self.puts_tour(tour_db)
+    value = Command.tour_parameter
+    case value[0]
+    when 'price'
+      tour_db.puts_by_price(value[1])
+    when 'country'
+      tour_db.puts_by_country(value[1])
+    when 'landmark'
+      tour_db.puts_by_landmark(value[1])
+    end
+  end
+
+  def self.tour_parameter
+    result = []
+    parameter = Input.need_parameter('why parameter for print tour(price/country/landmark)>')
+    result << parameter
+    case parameter
+    when 'price'
+      result << Input.need_num("#{parameter}>")
+    when 'country'
+      result << Input.need_string("#{parameter}>")
+    when 'landmark'
+      result << Input.need_string("#{parameter}>")
+    end
+    result
   end
 end
