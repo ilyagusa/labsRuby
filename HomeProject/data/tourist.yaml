@@ -3,7 +3,7 @@
   Surname: Gusev
   Patronymic: Sergeevich
   Landmark: kreml
-  Type: Bus
+  Type: bus
   Pricemin: 2000
   Pricemax: 4000
 
@@ -12,7 +12,7 @@
   Surname: Kostenko
   Patronymic: xz
   Landmark: kreml
-  Type: Bus
+  Type: bus
   Pricemin: 1000
   Pricemax: 5000
 
@@ -21,7 +21,7 @@
   Surname: Guseva
   Patronymic: Michailovna
   Landmark: shopsha
-  Type: Bus
+  Type: bus
   Pricemin: 0
   Pricemax: 100
 
@@ -30,6 +30,6 @@
   Surname: Travnikov
   Patronymic: Kekovich
   Landmark: yaroslavl
-  Type: Bus
+  Type: plane
   Pricemin: 0
   Pricemax: 10000

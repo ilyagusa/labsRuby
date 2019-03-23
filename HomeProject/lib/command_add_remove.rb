@@ -8,7 +8,7 @@ module CommandAddRemove
   def self.add_tour(tour_db)
     landmarks = []
     country = Input.need_string('Country or city>')
-    type_tr = Input.need_string('Type transport>')
+    type_tr = Input.need_type_transport('Type transport(bus/train/plane/motorship)>')
     duration = Input.need_num('Duration of the trip>')
     price = Input.need_num('Price of the trip')
     num_tourists = Input.need_num('Number of tourists>')
@@ -31,7 +31,7 @@ module CommandAddRemove
 
   def self.add_tourist(tourist_db)
     country = Input.need_string('Country or city>')
-    type_tr = Input.need_string('Type transport>')
+    type_tr = Input.need_type_transport('Type transport>')
     name = Input.need_string('Name>')
     surname = Input.need_string('Surname>')
     patr = Input.need_string('Patronymic>')

@@ -1,20 +1,20 @@
 - Country: Mexico
   Landmark: [kreml,ketayskaya_stena]
   Duration: 5
-  Type: Bus
+  Type: bus
   Price: 3000
   Num: 2
   
 - Country: Russia
   Landmark: [shopsha,ne_les]
   Duration: 365
-  Type: Bus
+  Type: bus
   Price: 100
   Num: 12
 
 - Country: Russia
   Landmark: [yaroslavl,shopsha]
   Duration: 365
-  Type: Bus
+  Type: plane
   Price: 100
   Num: 12

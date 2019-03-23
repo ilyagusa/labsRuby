@@ -37,10 +37,30 @@ def self.need_parameter()
     if(line=='price' || line == 'country' || line == 'landmark')
       return line
     else 
-      puts "Неверный параметр"
+      puts "Invalid parameter"
     end
   end
 end
+
+
+def self.need_type_transport(str)
+  loop do
+    print str
+    line=gets
+    if line.nil? || line.strip.empty?
+      puts "Вы ничего не ввели,введите требуемое значение"
+      next
+    end
+    line=line.chomp
+    if(line=='bus' || line == 'train' || line == 'plane' || line == 'motorship')
+      return line
+    else 
+      puts "Invalid type"
+    end
+  end
+end
+
+
 
 
 def self.need_string(str)
@@ -69,13 +89,16 @@ def self.read_filetours
     all_info = Psych.load_file('../data/tours.yaml')
     all_info.each do |tour|
       landmarks=[]
-      country = tour['Country']    
       landmarks = tour['Landmark']
       duration = tour['Duration']
-      type = tour['Type']
+      info=Info.new(tour['Country']    ,tour['Type'])
+      unless (tour['Type']=='bus' || tour['Type'] == 'train' || tour['Type'] == 'plane' || tour['Type'] == 'motorship')
+        puts "Invalide type transport in file(tour.yaml)"    
+        exit
+      end
       price = tour['Price']
       num = tour['Num']
-      new_tour = Tour.new(Info.new(country,type),duration,price,num,landmarks)
+      new_tour = Tour.new(info,duration,price,num,landmarks)
       tdb.push(new_tour)
     end
     return tdb
@@ -88,15 +111,16 @@ def self.read_filetourists
     tdb=TouristDB.new
     all_info = Psych.load_file('../data/tourist.yaml')
     all_info.each do |tourist|
-      country = tourist['Country']    
-      type = tourist['Type']
       landmark = tourist['Landmark']
-      name = tourist['Name']
-      surname = tourist['Surname']
-      patr = tourist['Patronymic']
+      info=Info.new(tourist['Country']    ,tourist['Type'])
+      unless (tourist['Type']=='bus' || tourist['Type'] == 'train' || tourist['Type'] == 'plane' || tourist['Type'] == 'motorship')
+        puts "Invalide type transport in file(tourist.yaml)"    
+        exit
+      end
+      person=Person.new(tourist['Name'],tourist['Surname'],tourist['Patronymic'])
       pricemin = tourist['Pricemin']
       pricemax = tourist['Pricemax']
-      new_tourist = Tourist.new(Info.new(country,type),Person.new(name,surname,patr),landmark,pricemin,pricemax)
+      new_tourist = Tourist.new(info,person,landmark,pricemin,pricemax)
       tdb.push(new_tourist)
     end
     return tdb

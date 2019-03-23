@@ -11,6 +11,6 @@ class Info
   end
 
   def to_s
-    "Country:#{@country}\nTransport:#{@type_t}\n"
+    "Country or city:#{@country}\nTransport:#{@type_t}\n"
   end
 end

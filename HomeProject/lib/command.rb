@@ -14,6 +14,7 @@ module Command
     tour_group = {}
     tour_db.each_with_index do |t, i|
       mass = []
+      tmp = t.num_tourists
       tourists_db.each_with_index do |t_t, i1|
         next unless t_t.occupancy == true && t.num_tourists >= 1 && (t.landmarks.include? t_t.land_mark) &&
                     t.info.gen == t_t.info.gen && Command.whyprice(t.price, t_t.min_p, t_t.max_p)
@@ -23,6 +24,7 @@ module Command
         t.num_tourists -= 1
       end
       tour_group["#{i + 1} TOUR"] = mass
+      t.num_tourists = tmp
     end
     tour_group
   end
