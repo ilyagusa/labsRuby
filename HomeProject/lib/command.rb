@@ -57,6 +57,7 @@ module Command
     true if price <= max_p && price >= min_p
   end
 
+  # check on the coincidence of all the parameters to choose a tour for the tourist
   def self.fill_tour(tour_db, tourists_db)
     tour_group = {}
     tour_db.each_with_index do |t, i|
@@ -71,16 +72,23 @@ module Command
       end
       tour_group["#{i + 1} TOUR"] = mass
     end
-    puts tour_group
+    tour_group
   end
 
+  def self.tour_for_tourist(tour_db, size, tour_group)
+    return puts 'First you need to distribute the tourists into groups' if tour_group.empty?
 
-
-  
-
-
-
-
-
-
+    touristindex = nil
+    loop do
+      touristindex = Input.need_num('input true index')
+      break if touristindex <= size
+    end
+    puts touristindex
+    tour_group.each do |key, value|
+      if value.include? "#{touristindex} tourist"
+        puts "for this <<#{touristindex} tourist>> picked up this tour>"
+        puts tour_db.tour(key.to_i - 1)
+      end
+    end
+  end
 end

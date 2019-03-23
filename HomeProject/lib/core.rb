@@ -20,19 +20,27 @@ class Core
   end
 
   def menu
-    puts 'enter command'
-    a = gets.chomp
-    case a
-    when '1'
-      Command.add_tour(@tour_db)
-    when '2'
-      Command.remove_tour(@tour_db)
-    when '3'
-      Command.add_tourist(@tourist_db)
-    when '4'
-      Command.remove_tourist(@tourist_db)
-    when '5'
-      Command.fill_tour(@tour_db, @tourist_db)
+    tour_group = {}
+    loop do
+      puts 'enter command'
+      a = gets.chomp
+      case a
+      when '1'
+        Command.add_tour(@tour_db)
+      when '2'
+        Command.remove_tour(@tour_db)
+      when '3'
+        Command.add_tourist(@tourist_db)
+      when '4'
+        Command.remove_tourist(@tourist_db)
+      when '5'
+        tour_group = Command.fill_tour(@tour_db, @tourist_db)
+        puts tour_group
+      when '6'
+        Command.tour_for_tourist(@tour_db, @tourist_db.size, tour_group)
+      when 'exit'
+        break
+      end
     end
   end
 end

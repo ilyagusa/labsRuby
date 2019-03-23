@@ -9,8 +9,12 @@ class TouristDB
     @tourist_db.push(tourist)
   end
 
-  def tour(index)
+  def tourist(index)
     @tourist_db[index]
+  end
+
+  def size
+    @tourist_db.size
   end
 
   def remove(index)

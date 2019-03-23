@@ -18,9 +18,9 @@ def self.need_num(str)
         return nil
     end
     current=Float(current)
-    return current
+    return Integer(current)
     rescue ArgumentError => _exception 
-        puts "Это не число или данное отрицательное, попробуйте еще раз"
+        puts "Это не число или число не подходит в контексте программы, попробуйте еще раз"
   end
 end
 
