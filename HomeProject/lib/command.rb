@@ -10,7 +10,6 @@ module Command
   end
 
   def self.fill_tour(tour_db, tourists_db)
-    puts "selected filling  tour for tourists"
     tour_group = {}
     tour_db.each_with_index do |t, i|
       mass = []
