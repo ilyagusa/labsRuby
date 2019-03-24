@@ -39,7 +39,6 @@ class Core
       when '4'
         CommandAddRemove.remove_tourist(@tourist_db)
       when '5'
-        @tourist_db.swapocc
         @tour_group = Command.fill_tour(@tour_db, @tourist_db)
         puts @tour_group
       when '6'

@@ -20,9 +20,9 @@
   Name: Anna
   Surname: Guseva
   Patronymic: Michailovna
-  Landmark: shopsha
-  Type: bus
-  Pricemin: 0
+  Landmark: yaroslavl
+  Type: plane
+  Pricemin: -200
   Pricemax: 100
 
 - Country: Russia
@@ -30,6 +30,6 @@
   Surname: Travnikov
   Patronymic: Kekovich
   Landmark: yaroslavl
-  Type: plane
+  Type: bus
   Pricemin: 0
   Pricemax: 10000

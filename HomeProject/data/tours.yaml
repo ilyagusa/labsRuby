@@ -6,11 +6,11 @@
   Num: 2
   
 - Country: Russia
-  Landmark: [shopsha,ne_les]
+  Landmark: [yaroslavl,ne_les]
   Duration: 365
   Type: bus
   Price: 100
-  Num: 12
+  Num: 5
 
 - Country: Russia
   Landmark: [yaroslavl,shopsha]

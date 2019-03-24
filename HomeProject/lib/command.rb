@@ -11,6 +11,7 @@ module Command
 
   def self.fill_tour(tour_db, tourists_db)
     tour_group = {}
+    tourists_db.swapocc
     tour_db.each_with_index do |t, i|
       mass = []
       tmp = t.num_tourists

@@ -8,19 +8,19 @@ module CommandAddRemove
   def self.add_tour(tour_db)
     puts 'selected add tour'
     landmarks = []
-    country = Input.need_string('Country or city>')
-    type_tr = Input.need_type_transport('Type transport(bus/train/plane/motorship)>')
+    info = Info.new(Input.need_string('Country or city>'), Input.need_type('Type(bus/train/plane/motorship)>'))
     duration = Input.need_num('Duration of the trip>')
     price = Input.need_num('Price of the trip>')
     num_tourists = Input.need_num('Number of tourists>')
-    puts 'list landmarks(use enter twice to end)>'
+    puts 'list landmarks(print end if you finished)>'
     loop do
       landmark = Input.need_string('Landmark>')
-      break if landmark == 'q'
+      break if landmark == 'end' && landmarks.empty?
+      next if landmark == 'end'
 
       landmarks.push(landmark)
     end
-    tour_db.push(Tour.new(Info.new(country, type_tr), duration, price, num_tourists, landmarks))
+    tour_db.push(Tour.new(info, duration, price, num_tourists, landmarks))
     puts tour_db
   end
 
