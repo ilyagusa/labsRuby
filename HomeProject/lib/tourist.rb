@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'info'
 require_relative 'person'
 # 1

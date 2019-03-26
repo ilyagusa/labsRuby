@@ -1,3 +1,5 @@
+AllCops:
+  TargetRubyVersion: 2.5
 Metrics/AbcSize:      # Отключение ABC-проверок
   Enabled: false
 Metrics/LineLength:   # Длина строк 120

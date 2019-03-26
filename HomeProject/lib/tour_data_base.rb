@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'tour'
 # 1
 class TourDB

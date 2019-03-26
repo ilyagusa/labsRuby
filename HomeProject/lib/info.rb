@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 1
 class Info
   attr_accessor :type_t, :country

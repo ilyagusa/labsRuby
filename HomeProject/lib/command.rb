@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'input'
 require_relative 'tour'
 require_relative 'tourist'
@@ -5,6 +7,7 @@ require_relative 'info'
 require_relative 'person'
 # function
 module Command
+  include Input
   def self.whyprice(price, min_p, max_p)
     true if price <= max_p && price >= min_p
   end
@@ -37,17 +40,14 @@ module Command
       touristindex = Input.need_num('input true index tourist>')
       break if touristindex <= size
     end
-    puts touristindex
+    puts "for <<#{touristindex} tourist>> picked up this tour>"
     tour_group.each do |key, value|
-      if value.include? "#{touristindex} tourist"
-        puts "for this <<#{touristindex} tourist>> picked up this tour>"
-        puts tour_db.tour(key.to_i - 1)
-      end
+      puts tour_db.tour(key.to_i - 1) if value.include? "#{touristindex} tourist"
     end
   end
 
   def self.puts_tour(tour_db)
-    puts 'selected print tour by parameter'
+    puts 'selected print tour by parameter(price/country/landmark)'
     value = Command.tour_parameter
     case value[0]
     when 'price'

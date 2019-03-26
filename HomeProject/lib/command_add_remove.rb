@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'input'
 require_relative 'tour'
 require_relative 'tourist'
@@ -5,6 +7,7 @@ require_relative 'info'
 require_relative 'person'
 # function
 module CommandAddRemove
+  include Input
   def self.add_tour(tour_db)
     puts 'selected add tour'
     landmarks = []
@@ -34,7 +37,7 @@ module CommandAddRemove
   def self.add_tourist(tourist_db)
     puts 'selected add tourist'
     country = Input.need_string('Country or city>')
-    type_tr = Input.need_type_transport('Type transport>')
+    type_tr = Input.need_type('Type transport(bus/train/plane/motorship)>')
     name = Input.need_string('Name>')
     surname = Input.need_string('Surname>')
     patr = Input.need_string('Patronymic>')

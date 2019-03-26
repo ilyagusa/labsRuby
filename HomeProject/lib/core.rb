@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'tourist_data_base'
 require_relative 'tour_data_base'
 require_relative 'input'

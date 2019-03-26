@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'info'
 # 1
 class Tour
