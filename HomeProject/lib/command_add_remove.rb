@@ -18,8 +18,8 @@ module CommandAddRemove
     puts 'list landmarks(print end if you finished)>'
     loop do
       landmark = Input.need_string('Landmark>')
-      break if landmark == 'end' && landmarks.empty?
-      next if landmark == 'end'
+      next if landmark == 'end' && landmarks.empty?
+      break if landmark == 'end'
 
       landmarks.push(landmark)
     end
@@ -54,5 +54,33 @@ module CommandAddRemove
     index = Input.need_num('Index for remove t_t>')
     tourist_db.remove(index - 1)
     puts tourist_db
+  end
+
+  def self.puts_tour(tour_db)
+    puts 'selected print tour by parameter(price/country/landmark)'
+    value = CommandAddRemove.tour_parameter
+    case value[0]
+    when 'price'
+      tour_db.puts_by_price(value[1])
+    when 'country'
+      tour_db.puts_by_country(value[1])
+    when 'landmark'
+      tour_db.puts_by_landmark(value[1])
+    end
+  end
+
+  def self.tour_parameter
+    result = []
+    parameter = Input.need_parameter
+    result << parameter
+    case parameter
+    when 'price'
+      result << Input.need_num("#{parameter}>")
+    when 'country'
+      result << Input.need_string("#{parameter}>")
+    when 'landmark'
+      result << Input.need_string("#{parameter}>")
+    end
+    result
   end
 end
