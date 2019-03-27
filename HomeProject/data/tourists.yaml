@@ -33,3 +33,12 @@
   Type: bus
   Pricemin: 0
   Pricemax: 10000
+
+- Country: Mexico
+  Name: Sasha
+  Surname: Abc
+  Patronymic: dont
+  Landmark: kreml
+  Type: bus
+  Pricemin: 2000
+  Pricemax: 4000

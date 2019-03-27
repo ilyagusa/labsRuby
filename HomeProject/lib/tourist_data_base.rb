@@ -19,6 +19,10 @@ class TouristDB
     @tourist_db.size
   end
 
+  def sort
+    @tourist_db.sort_by { |tourist| tourist.fio.surname }
+  end
+
   def remove(index)
     @tourist_db.delete_at(index)
   end

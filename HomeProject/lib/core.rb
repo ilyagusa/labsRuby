@@ -97,6 +97,7 @@ class Core
     puts 'selected print all tourist in tour'
     return puts 'First you need to distribute the tourists into groups' if @tour_group.empty?
 
+    a = TouristDB.new
     tour_index = nil
     loop do
       tour_index = Input.need_num('input true index tour>')
@@ -105,8 +106,9 @@ class Core
     @tour_group.each do |key, value|
       if key.to_i == tour_index
         puts "IN <<#{tour_index} TOUR>> these tourists>"
-        value.each { |x| puts @tourist_db.tourist(x.to_i - 1) }
+        value.each { |x| a.push(@tourist_db.tourist(x.to_i - 1)) }
       end
     end
+    puts a.sort
   end
 end
