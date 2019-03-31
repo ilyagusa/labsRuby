@@ -27,7 +27,7 @@ class Core
   def menu
     loop do
       help
-      a = gets.chomp
+      a = Input.need_string("Select command>>>")
       case a
       when '1'
         CommandAddRemove.add_tour(@tour_db)
@@ -113,6 +113,5 @@ class Core
     puts "\nMENU:::\n1/3-add(Tour/Tourist)\n2/4-remove(Tour/Tourist)"
     puts "5-select tour\n6-print tour for tourist\n7-print tour by param\n8-print tourists by tour\n"
     print "exit-end programm\n\n"
-    print 'Select command>>>'
   end
 end

@@ -67,6 +67,7 @@ module Input
 
   def self.read_filetours
     tdb = TourDB.new
+    exit unless File.exists?('../data/tours.yaml')
     all_info = Psych.load_file('../data/tours.yaml')
     all_info.each do |tour|
       landmarks = tour['Landmark']
@@ -82,6 +83,7 @@ module Input
 
   def self.read_filetourists
     tdb = TouristDB.new
+    exit unless File.exists?('../data/tourists.yaml')
     all_info = Psych.load_file('../data/tourists.yaml')
     all_info.each do |tourist|
       landmark = tourist['Landmark']
