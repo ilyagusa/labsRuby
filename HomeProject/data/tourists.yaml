@@ -2,7 +2,7 @@
   Name: Ilya
   Surname: Gusev
   Patronymic: Sergeevich
-  Landmark: kreml
+  Landmark: Soumaia
   Type: bus
   Pricemin: 2000
   Pricemax: 4000
@@ -10,8 +10,8 @@
 - Country: Mexico
   Name: Andrey
   Surname: Kostenko
-  Patronymic: xz
-  Landmark: kreml
+  Patronymic: Nikolaevich
+  Landmark: Torre Insignia
   Type: bus
   Pricemin: 1000
   Pricemax: 5000
@@ -20,25 +20,25 @@
   Name: Anna
   Surname: Guseva
   Patronymic: Michailovna
-  Landmark: yaroslavl
+  Landmark: Yaroslavl
   Type: plane
   Pricemin: 200
   Pricemax: 100
 
-- Country: Russia
+- Country: Moscow
   Name: Andrey
   Surname: Travnikov
-  Patronymic: Kekovich
-  Landmark: yaroslavl
+  Patronymic: Grigorevich
+  Landmark: Kreml
   Type: bus
   Pricemin: 0
   Pricemax: 10000
 
 - Country: Mexico
   Name: Sasha
-  Surname: Abc
-  Patronymic: dont
-  Landmark: kreml
+  Surname: Domashina
+  Patronymic: Sergeevna
+  Landmark: Soumaia
   Type: bus
   Pricemin: 2000
   Pricemax: 4000

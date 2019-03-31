@@ -25,11 +25,8 @@ class Core
   end
 
   def menu
-    puts "\nMENU:::\n1/3-add(Tour/Tourist)\n2/4-remove(Tour/Tourist)"
-    puts "5-select tour\n6-print tour for tourist\n7-print tour by param\n8-print tourists by tour\n"
-    print "exit-end programm\n"
     loop do
-      print 'Select command>>>'
+      help
       a = gets.chomp
       case a
       when '1'
@@ -110,5 +107,12 @@ class Core
       end
     end
     puts a.sort
+  end
+
+  def help
+    puts "\nMENU:::\n1/3-add(Tour/Tourist)\n2/4-remove(Tour/Tourist)"
+    puts "5-select tour\n6-print tour for tourist\n7-print tour by param\n8-print tourists by tour\n"
+    print "exit-end programm\n\n"
+    print 'Select command>>>'
   end
 end

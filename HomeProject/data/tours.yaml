@@ -1,20 +1,20 @@
 - Country: Mexico
-  Landmark: [kreml,ketayskaya_stena]
+  Landmark: [Torre Insignia,Soumaia]
   Duration: 5
   Type: bus
   Price: 3000
   Num: 3
   
 - Country: Russia
-  Landmark: [yaroslavl,ne_les]
-  Duration: 365
-  Type: bus
+  Landmark: [Yaroslavl,Moscow]
+  Duration: 15
+  Type: plane
   Price: 100
   Num: 5
 
-- Country: Russia
-  Landmark: [yaroslavl,shopsha]
-  Duration: 365
-  Type: plane
+- Country: Moscow
+  Landmark: [Kreml]
+  Duration: 10
+  Type: bus
   Price: 100
   Num: 12
