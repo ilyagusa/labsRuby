@@ -4,4 +4,16 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
+gem 'sinatra'
+
+gem 'rerun'
+
+gem 'puma'
+
+gem 'rubocop'
+
+gem 'rspec'
+
+gem 'simplecov'
+
 # gem "rails"

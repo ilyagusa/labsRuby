@@ -1,0 +1,19 @@
+<h2>Список счетов</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <% @ut_bills_db.each_with_index do |ut_bills,index| %>
+          <li><%= "Счёт №#{index+1}" %></li>
+          <li><%= "Фамилия: #{ut_bills.fio.surname}" %></li>
+          <li><%= "Имя: #{ut_bills.fio.name}" %></li>
+          <li><%= "Общая сумма оплаты: #{ut_bills.payment_amount}" %></li>
+          <li><%= "Внесённая сумма оплаты: #{ut_bills.paid}" %></li>
+          <li><%= "Тип счёта: #{ut_bills.type}" %></li>
+          <li><%= "Месяц платежа: #{ut_bills.type}" %></li>
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
