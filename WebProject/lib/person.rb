@@ -3,13 +3,13 @@
 # 1
 class Person
   attr_accessor :name, :surname, :patronymic
-  def initialize(name, surname, patronymic)
+  def initialize(surname, name, patronymic)
     @name = name
     @surname = surname
     @patronymic = patronymic
   end
 
   def to_s
-    "Name:#{@name} Surname:#{@surname} Patronymic:#{@patronymic}"
+    "Surname:#{@surname} Name:#{@name}  Patronymic:#{@patronymic}"
   end
 end

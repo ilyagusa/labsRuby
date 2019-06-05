@@ -1,19 +1,19 @@
+# frozen_string_literal: true
 
-#payment_amount - сумма платежа
-#paid - проплаченный
+# pay_am - summa platezha
+# paid - skolko_proplacheno
 class UtilityBills
-  attr_accessor :fio,:address,:payment_amount,:paid,:type,:month
-  def initialize(fio,address,payment_amount,type,month)
-    @fio=fio
-    @address=address
-    @month=month
-    @payment_amount=payment_amount
-    @paid=0
-    @type=type
+  attr_accessor :fio, :address, :pay_am, :paid, :type, :month
+  def initialize(fio, address, pay_am, type, month)
+    @fio = fio
+    @address = address
+    @month = month
+    @pay_am = pay_am
+    @paid = 0
+    @type = type
   end
 
   def to_s
-    "\n#{@fio}\nAddress:#{@address}\nPayment month:#{@month}\nType paymant:#{"#{@type}"}\nPayment amount:#{@payment_amount}\nPaid:#{@paid}"
+    "\n#{@fio}\nAddress:#{@address}\nPayment month:#{@month}\nType paymant:#{@type}\nPay am:#{@pay_am}\nPaid:#{@paid}"
   end
-
 end
