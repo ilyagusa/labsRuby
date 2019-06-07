@@ -24,7 +24,7 @@ class UtilityBillDataBase
   # end
 
   def remove(index)
-    @utility_bill_data_base.delete_at(index)
+    @utility_bill_data_base.delete_at(index.to_i - 1)
   end
 
   def each_with_index

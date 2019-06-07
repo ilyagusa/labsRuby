@@ -1,39 +1,40 @@
-<form>
+<h2>Добавление счёта в общий список</h2>
+<form method="post">
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4">Фамилия</label>
-      <input type="text" class="form-control" id="inputEmail4" placeholder="Фамилия">
+      <label for="surname">Фамилия</label>
+      <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4">Имя</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="Имя">
+      <label for="name">Имя</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
     </div>
     <div class="form-group col-md-4">
-    <label for="inputPassword4">Отчество</label>
-    <input type="text" class="form-control" id="inputPassword4" placeholder="Отчество">
+    <label for="patronymic">Отчество</label>
+    <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="Отчество">
   </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputEmail4">Город/НП</label>
-      <input type="text" class="form-control" id="inputEmail4" placeholder="Город/НП">
+      <label for="city">Город/НП</label>
+      <input type="text" class="form-control" id="city" name="city" placeholder="Город/НП">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputPassword4">Улица</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="Улица">
+      <label for="street">Улица</label>
+      <input type="text" class="form-control" id="street" name="street" placeholder="Улица">
     </div> 
     <div class="form-group col-md-2">
-      <label for="inputPassword4">Дом</label>
-      <input type="number" class="form-control" id="inputPassword4" placeholder="Дом">
+      <label for="house">Дом</label>
+      <input type="number" class="form-control" id="house" name="house" placeholder="Дом">
     </div>
     <div class="form-group col-md-2">
-      <label for="inputPassword4">Квартира</label>
-      <input type="number" class="form-control" id="inputPassword4" placeholder="Квартира">
+      <label for="apartment">Квартира</label>
+      <input type="number" class="form-control" id="apartment" name="apartment" placeholder="Квартира">
     </div>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Месяц выставления счёта</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <label for="month">Месяц выставления счёта</label>
+    <select class="form-control" id="month" name="month">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -49,12 +50,16 @@
     </select>
   </div>
   <div class="form-group">
-  <label for="inputState">Вид Счета</label>
-  <select id="inputState" class="form-control">
+  <label for="type">Вид счета</label>
+  <select id="type" name="type" class="form-control">
     <option>Квартплата</option>
     <option>Плата за электричество</option>
     <option>Плата за телефон</option>
   </select>
   </div>
-
+  <div class="form-group ">
+    <label for="pay_am">Сумма платежа</label>
+    <input type="number" class="form-control" id="pay_am" name="pay_am" placeholder="5000">
+  </div>
+  <button type="submit" class="btn btn-primary">Добавить счёт</button>
 </form>

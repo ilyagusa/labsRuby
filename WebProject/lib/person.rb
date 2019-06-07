@@ -9,7 +9,11 @@ class Person
     @patronymic = patronymic
   end
 
+  def check_space
+    return true if @name.empty? || @surname.empty? || @patronymic.empty?
+  end
+
   def to_s
-    "Surname:#{@surname} Name:#{@name}  Patronymic:#{@patronymic}"
+    "Фамилия:#{@surname} Имя:#{@name}  Отчество:#{@patronymic}"
   end
 end
