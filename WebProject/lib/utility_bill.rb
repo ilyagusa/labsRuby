@@ -3,7 +3,7 @@
 # pay_am - summa platezha
 # paid - skolko_proplacheno
 class UtilityBills
-  attr_reader :fio, :address, :pay_am, :paid, :type, :month, :errors
+  attr_accessor :fio, :address, :pay_am, :paid, :type, :month, :errors
   def initialize(fio, address, pay_am, type, month)
     @fio = fio
     @address = address
@@ -29,7 +29,7 @@ class UtilityBills
 
   def negative
     zero = true if @address.house.to_i <= 0 || @address.apartment.to_i <= 0 || @pay_am.to_i <= 0
-    @errors[:negative] = 'Это значение не может быть отрицательным или нулём!' if zero
+    @errors[:negative] = 'В этом поле должно быть чилсо > 0!' if zero
   end
 
   def to_s

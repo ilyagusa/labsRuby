@@ -37,10 +37,11 @@ end
 post '/add_ut_bill' do
   address = Address.new(params['city'], params['street'], params['house'], params['apartment'])
   person = Person.new(params['surname'], params['name'], params['patronymic'])
-  ut_bill = UtilityBills.new(person, address, params['pay_am'], params['type'], params['month'])
-  ut_bill.check_error
-  if ut_bill.errors.empty?
-    settings.ut_bills_db.add(ut_bill)
+  @ut_bill = UtilityBills.new(person, address, params['pay_am'], params['type'], params['month'])
+  @ut_bill.check_error
+  @errors = @ut_bill.errors
+  if @errors.empty?
+    settings.ut_bills_db.add(@ut_bill)
     redirect('/main')
   else
     erb :add_ut_bill
@@ -52,6 +53,43 @@ get '/delete_ut_bill' do
 end
 
 post '/delete_ut_bill' do
-  settings.ut_bills_db.remove(params['index'])
-  redirect('/main')
+  @errors = 'Число должно быть больше 0 и меньше максимального номера счёта'
+  if params['index'].to_i >= 1 && params['index'].to_i <= settings.ut_bills_db.size
+    settings.ut_bills_db.remove(params['index'])
+    redirect('/main')
+  else
+    erb :delete_ut_bill
+  end
+end
+
+get '/paid/:index' do
+  @ut_bill = settings.ut_bills_db.utility_bill(params['index'])
+  erb :paid
+end
+
+post '/paid/:index' do
+  @ut_bill = settings.ut_bills_db.utility_bill(params['index'])
+  @errors = "Оплата должна быть больше 0 , но не больше #{@ut_bill.pay_am.to_i - @ut_bill.paid.to_i}(Остаток оплаты)"
+  if params['paid'].to_i.positive? && params['paid'].to_i <= (@ut_bill.pay_am.to_i - @ut_bill.paid.to_i)
+    @ut_bill.paid += params['paid'].to_i
+    settings.ut_bills_db.utility_bill(params['index']).paid = @ut_bill.paid.to_i
+    redirect('/main')
+  else
+    erb :paid
+  end
+end
+
+get '/ut_bills_for_person' do
+  @ut_bills_db=UtilityBillDataBase.new
+  erb:ut_bills_for_person
+end
+
+post '/ut_bills_for_person' do
+  @ut_bills_db=UtilityBillDataBase.new
+  settings.ut_bills_db.each do |ut_bill|
+    if(params['name'] == ut_bill.fio.name && params['surname'] == ut_bill.fio.surname && params['patronymic'] == ut_bill.fio.patronymic)
+      @ut_bills_db.add(ut_bill)
+    end
+  end
+  erb:ut_bills_for_person
 end

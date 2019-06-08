@@ -4,32 +4,53 @@
     <div class="form-group col-md-4">
       <label for="surname">Фамилия</label>
       <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
     </div>
     <div class="form-group col-md-4">
       <label for="name">Имя</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
     </div>
     <div class="form-group col-md-4">
     <label for="patronymic">Отчество</label>
     <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="Отчество">
+    <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
   </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="city">Город/НП</label>
       <input type="text" class="form-control" id="city" name="city" placeholder="Город/НП">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
     </div>
     <div class="form-group col-md-4">
       <label for="street">Улица</label>
       <input type="text" class="form-control" id="street" name="street" placeholder="Улица">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
     </div> 
     <div class="form-group col-md-2">
       <label for="house">Дом</label>
       <input type="number" class="form-control" id="house" name="house" placeholder="Дом">
-    </div>
+      <% if @errors %>
+        <%= @errors[:negative] %>
+      <% end %>
+    </div>  
     <div class="form-group col-md-2">
       <label for="apartment">Квартира</label>
       <input type="number" class="form-control" id="apartment" name="apartment" placeholder="Квартира">
+      <% if @errors %>
+        <%= @errors[:negative] %>
+      <% end %>
     </div>
   </div>
   <div class="form-group">
@@ -60,6 +81,9 @@
   <div class="form-group ">
     <label for="pay_am">Сумма платежа</label>
     <input type="number" class="form-control" id="pay_am" name="pay_am" placeholder="5000">
+    <% if @errors %>
+      <%= @errors[:negative] %>
+    <% end %>
   </div>
   <button type="submit" class="btn btn-primary">Добавить счёт</button>
 </form>

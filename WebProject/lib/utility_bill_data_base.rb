@@ -12,7 +12,7 @@ class UtilityBillDataBase
   end
 
   def utility_bill(index)
-    @utility_bill_data_base[index]
+    @utility_bill_data_base[index.to_i]
   end
 
   def size
