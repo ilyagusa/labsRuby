@@ -91,5 +91,27 @@ post '/ut_bills_for_person' do
       @ut_bills_db.add(ut_bill)
     end
   end
+  @errors='Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)' if @ut_bills_db.empty
   erb:ut_bills_for_person
+end
+
+
+get '/group_by_type' do
+  erb:group_by_type
+end
+
+post '/group_by_type' do
+  @ut_bills_db=settings.ut_bills_db.group(params['name'],params['surname'],params['patronymic'])
+  if @ut_bills_db.empty?
+    @errors= 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)'
+    erb:group_by_type
+  else
+  erb:show_money
+  end
+end
+
+get '/show_debt' do
+  @debt_db=settings.ut_bills_db.sort_by_surname()
+  errors = "Список пуст" if @debt_db.empty?
+  erb:show_debt
 end
