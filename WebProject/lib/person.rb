@@ -13,8 +13,8 @@ class Person
     return true if @name.empty? || @surname.empty? || @patronymic.empty?
   end
 
-  def gen_str 
-    str="#{@name} #{@surname} ##{@patronymic}"
+  def gen_str
+    "#{@name} #{@surname} ##{@patronymic}"
   end
 
   def to_s

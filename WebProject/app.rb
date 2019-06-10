@@ -5,13 +5,18 @@ require_relative 'lib/utility_bill'
 require_relative 'lib/utility_bill_data_base'
 require_relative 'lib/person'
 require_relative 'lib/address'
+require_relative 'lib/command'
+
 
 configure do
   set :ut_bills_db, UtilityBillDataBase.new([
                                               # fio, address, payment_amount, type, month
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 15, 4), '5000', 'hata', '12'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 15, 4), '5000', 'Квартплата', '12'),
                                               UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 4), '3000', 'phone', '2'),
-                                              UtilityBills.new(Person.new('Travnikov', 'Andrey', 'Grigorevich'), Address.new('Dubna', 'molod', 32, 123), '2000', 'gaz', '4')
+                                              UtilityBills.new(Person.new('Travnikov', 'Andrey', 'Grigorevich'), Address.new('Dubna', 'molod', 32, 123), '2000', 'gaz', '4'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 43, 4), '2800', 'Квартплата', '7'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 213, 3), '3700', 'Квартплата', '10'),
+
                                             ])
 end
 
@@ -112,4 +117,14 @@ end
 get '/show_debt' do
   @debt_db = settings.ut_bills_db.sort_by_surname
   erb :show_debt
+end
+
+get '/person_and_type' do
+  erb:person_and_type
+end
+
+post '/person_and_type' do
+  ut_bill=Command.general_bill(params['name'],params['surname'],params['pat'],params['type'],settings.ut_bills_db)
+  settings.ut_bills_db.add(ut_bill)
+  redirect('/main')
 end

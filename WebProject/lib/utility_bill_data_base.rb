@@ -39,6 +39,10 @@ class UtilityBillDataBase
     return true if @utility_bill_data_base.empty?
   end
 
+  def index(elm)
+    @utility_bill_data_base.index(elm)
+  end
+
   def group(name, surname, patronymic)
     group_db = []
     @utility_bill_data_base.each do |ut_bill|
@@ -47,6 +51,10 @@ class UtilityBillDataBase
       end
     end
     group_db.sort_by(&:type)
+  end
+
+  def compact
+    @utility_bill_data_base.compact
   end
 
   def sort_by_surname
@@ -62,4 +70,5 @@ class UtilityBillDataBase
     end
     sort_db.sort_by { |elm| elm.fio.surname }
   end
+
 end
