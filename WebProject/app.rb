@@ -80,38 +80,36 @@ post '/paid/:index' do
 end
 
 get '/ut_bills_for_person' do
-  @ut_bills_db=UtilityBillDataBase.new
-  erb:ut_bills_for_person
+  @ut_bills_db = UtilityBillDataBase.new
+  erb :ut_bills_for_person
 end
 
 post '/ut_bills_for_person' do
-  @ut_bills_db=UtilityBillDataBase.new
+  @ut_bills_db = UtilityBillDataBase.new
   settings.ut_bills_db.each do |ut_bill|
-    if(params['name'] == ut_bill.fio.name && params['surname'] == ut_bill.fio.surname && params['patronymic'] == ut_bill.fio.patronymic)
-      @ut_bills_db.add(ut_bill)
+    if params['name'] == ut_bill.fio.name && params['surname'] == ut_bill.fio.surname
+      @ut_bills_db.add(ut_bill) if params['patronymic'] == ut_bill.fio.patronymic
     end
   end
-  @errors='Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)' if @ut_bills_db.empty
+  @errors = 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)' if @ut_bills_db.empty
   erb:ut_bills_for_person
 end
-
 
 get '/group_by_type' do
   erb:group_by_type
 end
 
 post '/group_by_type' do
-  @ut_bills_db=settings.ut_bills_db.group(params['name'],params['surname'],params['patronymic'])
+  @ut_bills_db = settings.ut_bills_db.group(params['name'], params['surname'], params['patronymic'])
   if @ut_bills_db.empty?
-    @errors= 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)'
-    erb:group_by_type
+    @errors = 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)'
+    erb :group_by_type
   else
-  erb:show_money
+    erb :show_money
   end
 end
 
 get '/show_debt' do
-  @debt_db=settings.ut_bills_db.sort_by_surname()
-  errors = "Список пуст" if @debt_db.empty?
-  erb:show_debt
+  @debt_db = settings.ut_bills_db.sort_by_surname
+  erb :show_debt
 end
