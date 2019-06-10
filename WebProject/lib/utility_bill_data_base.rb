@@ -70,5 +70,4 @@ class UtilityBillDataBase
     end
     sort_db.sort_by { |elm| elm.fio.surname }
   end
-
 end
