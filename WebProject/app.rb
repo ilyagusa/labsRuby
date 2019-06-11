@@ -11,11 +11,14 @@ configure do
   set :ut_bills_db, UtilityBillDataBase.new([
                                               # fio, address, payment_amount, type, month
                                               UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 15, 4), '5000', 'Квартплата', '12'),
-                                              UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 4), '3000', 'phone', '2'),
-                                              UtilityBills.new(Person.new('Travnikov', 'Andrey', 'Grigorevich'), Address.new('Dubna', 'molod', 32, 123), '2000', 'gaz', '4'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 43, 4), '2800', 'Квартплата', '7'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 213, 3), '3700', 'Квартплата', '10')
-
+                                              UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 4), '3000', 'Плата за телефон', '2'),
+                                              UtilityBills.new(Person.new('Travnikov', 'Andrey', 'Grigorevich'), Address.new('Dubna', 'molod', 32, 123), '2000', 'Плата за телефон', '4'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 43, 4), '2800', 'Плата за телефон', '7'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 213, 3), '3700', 'Квартплата', '10'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'Stroitelei', 43, 4), '1200', 'Плата за телефон', '8'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'фыв', 43, 4), '2800', 'Плата за электричество', '7'),
+                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'фыв', 43, 4), '2800', 'Плата за электричество', '11'),
+                                              UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 124), '3000', 'Плата за телефон', '12')
                                             ])
 end
 
@@ -84,7 +87,6 @@ post '/paid/:index' do
 end
 
 get '/ut_bills_for_person' do
-  @ut_bills_db = UtilityBillDataBase.new
   erb :ut_bills_for_person
 end
 
@@ -95,12 +97,16 @@ post '/ut_bills_for_person' do
       @ut_bills_db.add(ut_bill) if params['patronymic'] == ut_bill.fio.patronymic
     end
   end
-  @errors = 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)' if @ut_bills_db.empty
-  erb:ut_bills_for_person
+  if @ut_bills_db.empty
+    @errors = 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)'
+    erb :ut_bills_for_person
+  else
+    erb :show_utb
+  end
 end
 
 get '/group_by_type' do
-  erb:group_by_type
+  erb :group_by_type
 end
 
 post '/group_by_type' do
@@ -133,9 +139,19 @@ post '/person_and_type' do
   end
 end
 
-
-get '/show_statistic' do 
+get '/show_statistic' do
   redirect('main') if settings.ut_bills_db.empty
-  @hash_stat=Command.statistic(settings.ut_bills_db)
-  erb:show_statistic
+  @hash_stat = Command.statistic(settings.ut_bills_db)
+  erb :show_statistic
+end
+
+get '/pay_am_month' do
+  erb :type_month_payment
+end
+
+post '/pay_am_month' do
+  @ut_bills_db = settings.ut_bills_db
+  person_data_base = []
+  @pay_month_data_base = Command.month_pay(params['month'], params['type'], @ut_bills_db, person_data_base)
+  erb :show_pay_month
 end

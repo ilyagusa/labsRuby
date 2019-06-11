@@ -51,7 +51,7 @@ module Command
     data_base.each do |ut_bill|
       avg_payment_amount += ut_bill.pay_am.to_i
     end
-    avg_payment_amount/data_base.size
+    avg_payment_amount / data_base.size
   end
 
   def self.avg_paid(data_base)
@@ -59,7 +59,7 @@ module Command
     data_base.each do |ut_bill|
       average_paid += ut_bill.paid
     end
-    average_paid/data_base.size
+    average_paid / data_base.size
   end
 
   def self.most_common_type(data_base)
@@ -81,11 +81,11 @@ module Command
     count = 0
     data_base.each do |ut_bill|
       if ut_bill.type == type_most
-      avg_pay += ut_bill.pay_am.to_i
-      count += 1
+        avg_pay += ut_bill.pay_am.to_i
+        count += 1
       end
     end
-    avg_pay/count
+    avg_pay / count
   end
 
   def self.statistic(data_base)
@@ -96,5 +96,23 @@ module Command
     stat[:most_common_type] = most_common_type(data_base)
     stat[:avg_pay_am_for_type] = avg_pay_am_for_type(data_base, most_common_type(data_base))
     stat
+  end
+
+  def self.month_pay(month, type, data_base, person_data_base)
+    delete_base = []
+    data_base.each do |ut_bill|
+      check = 0
+      person_data_base.each do |person|
+        check = 1 if person.gen_str == ut_bill.fio.gen_str
+      end
+      person_data_base << ut_bill.fio if check.zero?
+      delete_base << ut_bill.fio if ut_bill.month == month && ut_bill.type == type
+    end
+    delete_base.each do |elm|
+      person_data_base.each_with_index do |person, index|
+        person_data_base.delete_at(index) if person.gen_str == elm.gen_str
+      end
+    end
+    person_data_base
   end
 end

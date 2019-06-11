@@ -1,0 +1,18 @@
+<h2>Список людей которым не выставлен счёт</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <% @pay_month_data_base.each do |person| %>
+            <li><%= "Фамилия: #{person.surname}" %></li>
+            <li><%= "Имя: #{person.name}" %></li>
+            <li><%= "Отчество: #{person.patronymic}" %></li>
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% if @pay_month_data_base.empty? %>
+  <div class="p-3 mb-2 bg-danger text-white">Всем людям выставлен счёт за указанный месяц</div>
+<% end %>

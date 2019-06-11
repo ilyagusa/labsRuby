@@ -18,22 +18,3 @@
   </div>
   <button type="submit" class="btn btn-primary">Показать все счета</button>
 </form>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <ul>
-        <% @ut_bills_db.each_with_index do |ut_bills,index| %>
-          <li><%= "Фамилия: #{ut_bills.fio.surname}" %></li>
-          <li><%= "Имя: #{ut_bills.fio.name}" %></li>
-          <li><%= "Отчество: #{ut_bills.fio.patronymic}" %></li>
-          <li><%= "Адрес: НП:#{ut_bills.address.city} ул.#{ut_bills.address.street} д.#{ut_bills.address.house} кв.#{ut_bills.address.apartment} " %></li>
-          <li><%= "Общая сумма оплаты: #{ut_bills.pay_am}" %></li>  
-          <li><%= "Внесённая сумма оплаты: #{ut_bills.paid}" %></li>
-          <li><%= "Тип счёта: #{ut_bills.type}" %></li>
-          <li><%= "Месяц платежа: #{ut_bills.month}" %></li>
-          <br />
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>

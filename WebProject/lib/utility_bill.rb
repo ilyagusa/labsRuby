@@ -29,7 +29,7 @@ class UtilityBills
 
   def negative
     zero = true if @address.house.to_i <= 0 || @address.apartment.to_i <= 0 || @pay_am.to_i <= 0
-    @errors[:negative] = 'В этом поле должно быть чилсо > 0!' if zero
+    @errors[:negative] = 'В этом поле должно быть положительное число !' if zero
   end
 
   def to_s
