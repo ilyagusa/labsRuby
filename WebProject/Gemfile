@@ -18,5 +18,4 @@ gem 'simplecov'
 
 gem 'capybara'
 
-
 # gem "rails"

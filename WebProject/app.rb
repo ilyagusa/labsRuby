@@ -8,9 +8,8 @@ require_relative 'lib/address'
 require_relative 'lib/command'
 require_relative 'lib/input'
 
-
 configure do
-  set :ut_bills_db, Input.read_file_ut_bills()
+  set :ut_bills_db, Input.read_file_ut_bills
 end
 
 get '/' do
@@ -115,13 +114,13 @@ get '/person_and_type' do
 end
 
 post '/person_and_type' do
-  ut_bill = Command.solo_bills(params['name'], params['surname'], params['pat'], params['type'], settings.ut_bills_db)
-  if ut_bill.nil?
-    @errors = " Не найдено ни одного счёта(#{params['type']}) для данного человека(Все поля должны быть заполнены)"
+  @ut_bill = Command.solo_bills(params['name'], params['surname'], params['pat'], params['type'], settings.ut_bills_db)
+  if @ut_bill.nil?
+    @errors = "Не найдено ни одного счёта(#{params['type']}) для данного человека(Все поля должны быть заполнены)"
     erb :person_and_type
   else
-    settings.ut_bills_db.add(ut_bill)
-    redirect('/show_utb')
+    settings.ut_bills_db.add(@ut_bill)
+    erb :show_general
   end
 end
 

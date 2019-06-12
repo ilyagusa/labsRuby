@@ -29,10 +29,6 @@ class UtilityBills
 
   def negative
     zero = true if @address.house.to_i <= 0 || @address.apartment.to_i <= 0 || @pay_am.to_i <= 0
-    @errors[:negative] = 'В этом поле должно быть положительное число !' if zero
-  end
-
-  def to_s
-    "\n#{@fio}\nАдрес:#{@address}\nМесяц счёта:#{@month}\nТип счёта:#{@type}\nСумма платежа:#{@pay_am}\nВыпл:#{@paid}"
+    @errors[:negative] = 'В этом поле должно быть положительное число!' if zero
   end
 end

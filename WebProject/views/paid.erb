@@ -18,9 +18,10 @@
 </div>
 <form method="post">
   <div class="form-group">
-    <label for="paid">Password</label>
+    <label for="paid">Сумма для внесения</label>
     <input type="number" class="form-control" id="paid" name="paid" placeholder="1000">
     <% if @errors %>
+    <%= "Ошибка ввода!" %>
       <%= @errors%>
     <% end %>
   </div>

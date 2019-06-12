@@ -16,5 +16,4 @@ class Person
   def gen_str
     "#{@name} #{@surname} ##{@patronymic}"
   end
-
 end

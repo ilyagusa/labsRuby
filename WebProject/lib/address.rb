@@ -8,5 +8,4 @@ class Address
     @house = house
     @apartment = apartment
   end
-
 end

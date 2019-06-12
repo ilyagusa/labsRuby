@@ -53,10 +53,6 @@ class UtilityBillDataBase
     group_db.sort_by(&:type)
   end
 
-  def compact
-    @utility_bill_data_base.compact
-  end
-
   def sort_by_surname
     sort_db = []
     @utility_bill_data_base.each do |ut_bill|
