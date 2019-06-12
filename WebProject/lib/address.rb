@@ -9,7 +9,4 @@ class Address
     @apartment = apartment
   end
 
-  def to_s
-    "\nНП:#{@city} ул.#{@street} д.#{@house} кв.#{@apartment}"
-  end
 end

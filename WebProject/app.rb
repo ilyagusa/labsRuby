@@ -6,28 +6,14 @@ require_relative 'lib/utility_bill_data_base'
 require_relative 'lib/person'
 require_relative 'lib/address'
 require_relative 'lib/command'
+require_relative 'lib/input'
+
 
 configure do
-  set :ut_bills_db, UtilityBillDataBase.new([
-                                              # fio, address, payment_amount, type, month
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 15, 4), '5000', 'Квартплата', '12'),
-                                              UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 4), '3000', 'Плата за телефон', '2'),
-                                              UtilityBills.new(Person.new('Travnikov', 'Andrey', 'Grigorevich'), Address.new('Dubna', 'molod', 32, 123), '2000', 'Плата за телефон', '4'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 43, 4), '2800', 'Плата за телефон', '7'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'molod', 213, 3), '3700', 'Квартплата', '10'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'Stroitelei', 43, 4), '1200', 'Плата за телефон', '8'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'фыв', 43, 4), '2800', 'Плата за электричество', '7'),
-                                              UtilityBills.new(Person.new('Gusev', 'Ilya', 'Sergeevich'), Address.new('Shopsha', 'фыв', 43, 4), '2800', 'Плата за электричество', '11'),
-                                              UtilityBills.new(Person.new('Kochigina', 'Anna', 'Mikhailovna'), Address.new('Shopsha', 'molod', 15, 124), '3000', 'Плата за телефон', '12')
-                                            ])
+  set :ut_bills_db, Input.read_file_ut_bills()
 end
 
 get '/' do
-  @ut_bills_db = settings.ut_bills_db
-  erb :show_utb
-end
-
-get '/main' do
   @ut_bills_db = settings.ut_bills_db
   erb :show_utb
 end
@@ -49,7 +35,7 @@ post '/add_ut_bill' do
   @errors = @ut_bill.errors
   if @errors.empty?
     settings.ut_bills_db.add(@ut_bill)
-    redirect('/main')
+    redirect('/show_utb')
   else
     erb :add_ut_bill
   end
@@ -63,7 +49,7 @@ post '/delete_ut_bill' do
   @errors = 'Число должно быть больше 0 и меньше максимального номера счёта'
   if params['index'].to_i >= 1 && params['index'].to_i <= settings.ut_bills_db.size
     settings.ut_bills_db.remove(params['index'])
-    redirect('/main')
+    redirect('/show_utb')
   else
     erb :delete_ut_bill
   end
@@ -80,7 +66,7 @@ post '/paid/:index' do
   if params['paid'].to_i.positive? && params['paid'].to_i <= (@ut_bill.pay_am.to_i - @ut_bill.paid.to_i)
     @ut_bill.paid += params['paid'].to_i
     settings.ut_bills_db.utility_bill(params['index']).paid = @ut_bill.paid.to_i
-    redirect('/main')
+    redirect('/show_utb')
   else
     erb :paid
   end
@@ -135,12 +121,12 @@ post '/person_and_type' do
     erb :person_and_type
   else
     settings.ut_bills_db.add(ut_bill)
-    redirect('/main')
+    redirect('/show_utb')
   end
 end
 
 get '/show_statistic' do
-  redirect('main') if settings.ut_bills_db.empty
+  redirect('show_utb') if settings.ut_bills_db.empty
   @hash_stat = Command.statistic(settings.ut_bills_db)
   erb :show_statistic
 end

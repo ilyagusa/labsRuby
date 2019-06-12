@@ -106,7 +106,7 @@ module Command
         check = 1 if person.gen_str == ut_bill.fio.gen_str
       end
       person_data_base << ut_bill.fio if check.zero?
-      delete_base << ut_bill.fio if ut_bill.month == month && ut_bill.type == type
+      delete_base << ut_bill.fio if ut_bill.month.to_i == month.to_i && ut_bill.type == type
     end
     delete_base.each do |elm|
       person_data_base.each_with_index do |person, index|

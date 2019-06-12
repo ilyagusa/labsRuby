@@ -17,7 +17,4 @@ class Person
     "#{@name} #{@surname} ##{@patronymic}"
   end
 
-  def to_s
-    "Фамилия:#{@surname} Имя:#{@name}  Отчество:#{@patronymic}"
-  end
 end

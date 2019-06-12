@@ -16,4 +16,7 @@ gem 'rspec'
 
 gem 'simplecov'
 
+gem 'capybara'
+
+
 # gem "rails"
