@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# pay_am - summa platezha
-# paid - skolko_proplacheno
+# This is the main class denoting the essence, the utility bill
 class UtilityBills
   attr_accessor :fio, :address, :pay_am, :paid, :type, :month, :errors
   def initialize(fio, address, pay_am, type, month)

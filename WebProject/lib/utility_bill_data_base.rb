@@ -2,6 +2,7 @@
 
 require_relative 'utility_bill'
 
+# This class contains ut_bills objects and functions associated with them
 class UtilityBillDataBase
   def initialize(utility_bill_data_base = [])
     @utility_bill_data_base = utility_bill_data_base
@@ -18,10 +19,6 @@ class UtilityBillDataBase
   def size
     @utility_bill_data_base.size
   end
-
-  # def sort
-  # @tourist_db.sort_by { |tourist| tourist.fio.surname }
-  # end
 
   def remove(index)
     @utility_bill_data_base.delete_at(index.to_i - 1)

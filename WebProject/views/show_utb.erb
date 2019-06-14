@@ -14,7 +14,7 @@
           <li class="card-text" id=type name=type><%= "Тип счёта: #{ut_bills.type}" %></li>
           <li class="card-text" id=month name=month><%= "Месяц платежа: #{ut_bills.month}" %></li>
           <% if ut_bills.paid != ut_bills.pay_am.to_i %>
-          <a class="btn btn-primary" href='/paid/<%=index%>' id="pay-mark-<%= index %>" role="button" >Оплатить счёт</a>
+          <a class="btn btn-primary btn-sm" href='/paid/<%=index%>' id="pay-mark-<%= index %>" role="button" >Оплатить счёт</a>
           <% end %>
           <br />
         <% end %>

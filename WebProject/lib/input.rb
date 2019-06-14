@@ -5,7 +5,7 @@ require_relative 'utility_bill_data_base'
 require_relative 'utility_bill'
 require_relative 'address'
 require_relative 'person'
-# 1
+# This class is responsible for reading from a file
 module Input
   FILE_UTBILLS = File.expand_path('../data/ut_bills.yaml', __dir__)
   def self.read_file_ut_bills

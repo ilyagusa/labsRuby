@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# 1
+# This class describes a person(name,surname,patronymic)
 class Person
   attr_accessor :name, :surname, :patronymic
   def initialize(surname, name, patronymic)

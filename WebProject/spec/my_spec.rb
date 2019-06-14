@@ -20,8 +20,8 @@ RSpec.describe 'Application', type: :feature do
   it 'Тест на добавление счёта' do
     visit('/')
     click_on('Добавить счёт')
-    fill_in('surname', with: 'NAME_ABC_DEF')
-    fill_in('name', with: 'SURNAME_ABC_DEF')
+    fill_in('surname', with: 'SURNAME_ABC_DEF')
+    fill_in('name', with: 'NAME_ABC_DEF')
     fill_in('patronymic', with: 'PATR_ABC_DEF')
     fill_in('city', with: 'CITY_NEW')
     fill_in('street', with: 'STREET_NEW')
@@ -78,8 +78,8 @@ RSpec.describe 'Application', type: :feature do
   it 'Тест на вывод всех счетов человека' do
     visit('/')
     click_on('Вывести все счета человека')
-    fill_in('surname', with: 'NAME_ABC_DEF')
-    fill_in('name', with: 'SURNAME_ABC_DEF')
+    fill_in('surname', with: 'SURNAME_ABC_DEF')
+    fill_in('name', with: 'NAME_ABC_DEF')
     fill_in('patronymic', with: 'PATR_ABC_DEF')
     click_on('Показать все счета')
     expect(page).to have_content('NAME_ABC_DEF')
@@ -105,8 +105,8 @@ RSpec.describe 'Application', type: :feature do
     visit('/')
     click_on('Группировка счетов по типу')
     expect(page).to have_content('Группировка счетов для выбраного человека по типу счёта')
-    fill_in('surname', with: 'NAME_ABC_DEF')
-    fill_in('name', with: 'SURNAME_ABC_DEF')
+    fill_in('surname', with: 'SURNAME_ABC_DEF')
+    fill_in('name', with: 'NAME_ABC_DEF')
     fill_in('patronymic', with: 'PATR_ABC_DEF')
     click_on('Показать счета')
     expect(page).to have_content('NAME_ABC_DEF')
@@ -137,8 +137,8 @@ RSpec.describe 'Application', type: :feature do
   it 'Тест объединения счетов по типу' do
     visit('/')
     click_on('Добавить счёт')
-    fill_in('surname', with: 'NAME_ABC_DEF')
-    fill_in('name', with: 'SURNAME_ABC_DEF')
+    fill_in('surname', with: 'SURNAME_ABC_DEF')
+    fill_in('name', with: 'NAME_ABC_DEF')
     fill_in('patronymic', with: 'PATR_ABC_DEF')
     fill_in('city', with: 'CITY_NEW')
     fill_in('street', with: 'STREET_NEW')
@@ -149,8 +149,8 @@ RSpec.describe 'Application', type: :feature do
     fill_in('pay_am', with: '1000')
     click_on('Добавить')
     click_on('Общий счёт для человека')
-    fill_in('surname', with: 'NAME_ABC_DEF')
-    fill_in('name', with: 'SURNAME_ABC_DEF')
+    fill_in('surname', with: 'SURNAME_ABC_DEF')
+    fill_in('name', with: 'NAME_ABC_DEF')
     fill_in('pat', with: 'PATR_ABC_DEF')
     select('Квартплата', from: 'type')
     click_on('Объединить счета')
@@ -179,7 +179,7 @@ RSpec.describe 'Application', type: :feature do
     select('Квартплата', from: 'type')
     select('12', from: 'month')
     click_on('Показать людей которым не выстален счёт')
-    expect(page).not_to have_content('NAME_ABC_DEF')
+    expect(page).not_to have_content('SURNAME_ABC_DEF')
   end
 
   it 'Тест на удаление' do
