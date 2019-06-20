@@ -9,4 +9,8 @@ class Address
     @house = house
     @apartment = apartment
   end
+
+  def full_adr
+    "#{@city} + #{@street} + #{@house} + #{@apartment}"
+  end
 end

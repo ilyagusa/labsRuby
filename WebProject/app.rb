@@ -31,8 +31,9 @@ post '/add_ut_bill' do
   person = Person.new(params['surname'], params['name'], params['patronymic'])
   @ut_bill = UtilityBills.new(person, address, params['pay_am'], params['type'], params['month'])
   @ut_bill.check_error
+  @contain = 'Этот счёт уже содержится в списке' if settings.ut_bills_db.include?(@ut_bill)
   @errors = @ut_bill.errors
-  if @errors.empty?
+  if @errors.empty? && @contain.nil?
     settings.ut_bills_db.add(@ut_bill)
     redirect('/show_utb')
   else
@@ -86,7 +87,7 @@ post '/ut_bills_for_person' do
     @errors = 'Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)'
     erb :ut_bills_for_person
   else
-    erb :show_utb
+    erb :show_ut_bill_for_person
   end
 end
 

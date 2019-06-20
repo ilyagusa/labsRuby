@@ -7,40 +7,37 @@ RSpec.describe 'Application', type: :feature do
     Capybara.app = Sinatra::Application.new
   end
 
-  it 'Should provide text when connecting to /' do
-    visit('/')
-    expect(page).to have_content('Работа с коммунальными платежами')
-  end
-
   it 'Проверка контента при переходе к show_utb' do
     visit('/show_utb')
     expect(page).to have_content('Работа с коммунальными платежами')
   end
 
-  it 'Тест на добавление счёта' do
+  it 'Тест на добавление счёта и объединение счетов' do
     visit('/')
+    name = find_by_id('name', match: :first).text.gsub('Имя: ', '').strip
+    surname = find_by_id('surname', match: :first).text.gsub('Фамилия: ', '').strip
+    patronymic = find_by_id('patronymic', match: :first).text.gsub('Отчество: ', '').strip
+    month = find_by_id('month', match: :first).text.gsub('Месяц платежа: ', '').strip
+    type = find_by_id('type', match: :first).text.gsub('Тип счёта: ', '').strip
     click_on('Добавить счёт')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
+    fill_in('surname', with: surname)
+    fill_in('name', with: name)
+    fill_in('patronymic', with: patronymic)
     fill_in('city', with: 'CITY_NEW')
     fill_in('street', with: 'STREET_NEW')
     fill_in('house', with: '12345')
     fill_in('apartment', with: '98765')
-    select('5', from: 'month')
-    select('Квартплата', from: 'type')
-    fill_in('pay_am', with: '513762')
+    select(month.to_i, from: 'month')
+    select(type, from: 'type')
+    fill_in('pay_am', with: '7897')
     click_on('Добавить')
-    expect(page).to have_content('NAME_ABC_DEF')
-    expect(page).to have_content('SURNAME_ABC_DEF')
-    expect(page).to have_content('PATR_ABC_DEF')
-    expect(page).to have_content('CITY_NEW')
-    expect(page).to have_content('STREET_NEW')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('98765')
-    expect(page).to have_content('5')
-    expect(page).to have_content('Квартплата')
-    expect(page).to have_content('513762')
+    click_on('Общий счёт для человека')
+    fill_in('surname', with: surname)
+    fill_in('name', with: name)
+    fill_in('pat', with: patronymic)
+    select(type, from: 'type')
+    click_on('Объединить счета')
+    expect(page).to have_content('Общий счёт')
   end
 
   it 'Негативный тест на добавление' do
@@ -77,21 +74,17 @@ RSpec.describe 'Application', type: :feature do
 
   it 'Тест на вывод всех счетов человека' do
     visit('/')
+    name = find_by_id('name', match: :first).text.gsub('Имя: ', '')
+    surname = find_by_id('surname', match: :first).text.gsub('Фамилия: ', '')
+    patronymic = find_by_id('patronymic', match: :first).text.gsub('Отчество: ', '')
     click_on('Вывести все счета человека')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
+    fill_in('name', with: name)
+    fill_in('surname', with: surname)
+    fill_in('patronymic'.to_s, with: patronymic)
     click_on('Показать все счета')
-    expect(page).to have_content('NAME_ABC_DEF')
-    expect(page).to have_content('SURNAME_ABC_DEF')
-    expect(page).to have_content('PATR_ABC_DEF')
-    expect(page).to have_content('CITY_NEW')
-    expect(page).to have_content('STREET_NEW')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('98765')
-    expect(page).to have_content('5')
-    expect(page).to have_content('Квартплата')
-    expect(page).to have_content('513762')
+    expect(page).to have_content(surname)
+    expect(page).to have_content(name)
+    expect(page).to have_content(patronymic)
   end
 
   it 'Негативный тест на вывод всех счетов человека' do
@@ -103,22 +96,20 @@ RSpec.describe 'Application', type: :feature do
 
   it 'Тест группировки по типу' do
     visit('/')
+    name = find_by_id('name', match: :first).text.gsub('Имя: ', '')
+    surname = find_by_id('surname', match: :first).text.gsub('Фамилия: ', '')
+    patronymic = find_by_id('patronymic', match: :first).text.gsub('Отчество: ', '')
+    type = find_by_id('type', match: :first).text
     click_on('Группировка счетов по типу')
     expect(page).to have_content('Группировка счетов для выбраного человека по типу счёта')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
+    fill_in('surname', with: surname)
+    fill_in('name', with: name)
+    fill_in('patronymic', with: patronymic)
     click_on('Показать счета')
-    expect(page).to have_content('NAME_ABC_DEF')
-    expect(page).to have_content('SURNAME_ABC_DEF')
-    expect(page).to have_content('PATR_ABC_DEF')
-    expect(page).to have_content('CITY_NEW')
-    expect(page).to have_content('STREET_NEW')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('98765')
-    expect(page).to have_content('5')
-    expect(page).to have_content('Квартплата')
-    expect(page).to have_content('513762')
+    expect(page).to have_content(name)
+    expect(page).to have_content(surname)
+    expect(page).to have_content(patronymic)
+    expect(page).to have_content(type)
   end
 
   it 'Негативный тест группировки по типу' do
@@ -134,27 +125,20 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content('Список должников')
   end
 
-  it 'Тест объединения счетов по типу' do
+  it 'Тест на невыставленные счета' do
     visit('/')
-    click_on('Добавить счёт')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
-    fill_in('city', with: 'CITY_NEW')
-    fill_in('street', with: 'STREET_NEW')
-    fill_in('house', with: '12345')
-    fill_in('apartment', with: '67821')
-    select('12', from: 'month')
-    select('Квартплата', from: 'type')
-    fill_in('pay_am', with: '1000')
-    click_on('Добавить')
-    click_on('Общий счёт для человека')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('pat', with: 'PATR_ABC_DEF')
-    select('Квартплата', from: 'type')
-    click_on('Объединить счета')
-    expect(page).to have_content('Общий счёт')
+    name = find_by_id('name', match: :first).text.gsub('Имя: ', '')
+    surname = find_by_id('surname', match: :first).text.gsub('Фамилия: ', '')
+    patronymic = find_by_id('patronymic', match: :first).text.gsub('Отчество: ', '')
+    month = find_by_id('month', match: :first).text.gsub('Месяц платежа: ', '')
+    type = find_by_id('type', match: :first).text.gsub('Тип счёта: ', '')
+    click_on('Невыставленные счета')
+    select(month.to_i, from: 'month')
+    select(type, from: 'type')
+    click_on('Показать людей которым не выстален счёт')
+    expect(page).to have_content('Список людей которым не выставлен счёт')
+    expect(page).not_to have_content(include(name).and(include(surname).and(include(patronymic)
+    .and(include(month).and(include(type))))))
   end
 
   it 'Негативный тест на объединение счетов' do
@@ -164,22 +148,12 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content('Не найдено ни одного счёта(Квартплата) для данного человека')
   end
 
-  it 'Тест на невыставленные счета' do
-    visit('/')
-    click_on('Невыставленные счета')
-    select('6', from: 'month')
-    select('Плата за телефон', from: 'type')
-    click_on('Показать людей которым не выстален счёт')
-    expect(page).to have_content('Список людей которым не выставлен счёт')
-  end
-
   it 'Негативный тест на невыставленные счета' do
     visit('/')
     click_on('Невыставленные счета')
     select('Квартплата', from: 'type')
     select('12', from: 'month')
     click_on('Показать людей которым не выстален счёт')
-    expect(page).not_to have_content('SURNAME_ABC_DEF')
   end
 
   it 'Тест на удаление' do
@@ -204,5 +178,23 @@ RSpec.describe 'Application', type: :feature do
     click_on('Удалить счёт')
     click_on('Удалить')
     expect(page).to have_content('Число должно быть больше 0 и меньше максимального номера счёта')
+  end
+
+  it 'Тест на добавление уже имеющегося элемента' do
+    visit('/')
+    (0..1).each do |_i|
+      click_on('Добавить счёт')
+      fill_in('surname', with: 'SURNAME_ABC_DEF')
+      fill_in('name', with: 'NAME_ABC_DEF')
+      fill_in('patronymic', with: 'PATR_ABC_DEF')
+      fill_in('city', with: 'CITY_NEW')
+      fill_in('street', with: 'STREET_NEW')
+      fill_in('house', with: '12345')
+      fill_in('apartment', with: '98765')
+      select('5', from: 'month')
+      select('Квартплата', from: 'type')
+      fill_in('pay_am', with: '513762')
+      click_on('Добавить')
+    end
   end
 end

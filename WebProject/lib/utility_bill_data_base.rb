@@ -36,6 +36,16 @@ class UtilityBillDataBase
     return true if @utility_bill_data_base.empty?
   end
 
+  def include?(ut_bill)
+    check = false
+    @utility_bill_data_base.each do |elm|
+      if ut_bill.fio.gen_str == elm.fio.gen_str && ut_bill.address.full_adr == elm.address.full_adr
+        check = true if ut_bill.type == elm.type && ut_bill.month == elm.month && ut_bill.pay_am == elm.pay_am
+      end
+    end
+    check
+  end
+
   def index(elm)
     @utility_bill_data_base.index(elm)
   end
