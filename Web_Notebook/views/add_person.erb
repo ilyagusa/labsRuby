@@ -1,0 +1,146 @@
+<h2>Добавление счёта в общий список</h2>
+<form method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="surname">Фамилия</label>
+      <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
+      <% if @errors %>
+        <%= @errors[:space_surname] %>
+      <% end %>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="name">Имя</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+      <% if @errors %>
+        <%= @errors[:space_name] %>
+      <% end %>
+    </div>
+    <div class="form-group col-md-4">
+    <label for="patronymic">Отчество</label>
+    <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="Отчество">
+    <% if @errors %>
+        <%= @errors[:space_patronymic] %>
+      <% end %>
+  </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="street">Улица</label>
+      <input type="text" class="form-control" id="street" name="street" placeholder="Улица">
+      <% if @errors %>
+        <%= @errors[:space_street] %>
+      <% end %>
+    </div> 
+    <div class="form-group col-md-6">
+      <label for="house">Дом</label>
+      <input type="number" class="form-control" id="house" name="house" placeholder="Дом">
+      <% if @errors %>
+        <%= @errors[:negative_house] %>
+      <% end %>
+    </div>  
+    </div>  
+    
+  <div class="form-row">
+  <div class="form-group col-md-4">
+  <label for="month">Месяц</label>
+    <select class="form-control" id="month" name="month">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>    
+      <option>9</option>
+      <option>10</option> 
+      <option>11</option>
+      <option>12</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+  <label for="day">День</label>
+    <select class="form-control" id="day" name="day">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>    
+      <option>9</option>
+      <option>10</option> 
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>16</option>
+      <option>17</option>
+      <option>18</option>
+      <option>19</option>
+      <option>20</option>    
+      <option>21</option>
+      <option>22</option> 
+      <option>23</option>
+      <option>24</option>
+      <option>25</option>
+      <option>27</option>
+      <option>28</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+    </select>
+    </div>
+    <div class="form-group ">
+    <label for="year">Год</label>
+    <input type="number" class="form-control" id="year" name="year" placeholder="1999">
+    <% if @errors %>
+      <%= @errors[:negative_year] %>
+    <% end %>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="gender">Пол</label>
+  <select id="gender" name="gender" class="form-control">
+    <option>Мужской</option>
+    <option>Женский</option>
+  </select>
+  </div>
+  <div class="form-group">
+  <label for="status">Статус</label>
+  <select id="status" name="status" class="form-control">
+    <option>Друг</option>
+    <option>Коллега</option>
+    <option>Парикмахер</option>
+    <option>Семья</option>
+    <option>Доставка</option>
+    <option>Такси</option>
+    <option>Женский</option>
+  </select>
+  </div>
+
+
+  <div class="form-group ">
+  <label for="cell">Сотовый номер</label>
+  <input type="number" class="form-control" id="cell" name="cell" placeholder="89612378631">
+  <% if @errors %>
+    <%= @errors[:negative_cell] %>
+  <% end %>
+  </div>
+
+
+  <div class="form-group ">
+  <label for="home">:Домашний номер</label>
+  <input type="number" class="form-control" id="home" name="home" placeholder="125126">
+  <% if @errors %>
+    <%= @errors[:negative_home] %>
+  <% end %>
+  </div>
+
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
