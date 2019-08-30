@@ -1,0 +1,31 @@
+<h2>Редактирование статуса</h2>
+<form method="post">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+          <li class="card-text" id=surname name=surname><%= "Фамилия: #{@person.surname}" %></li>
+          <li class="card-text" id=name name=name><%= "Имя: #{@person.name}" %></li>
+          <li class="card-text" id=patronymic name=patronymic><%= "Отчество: #{@person.m_name}" %></li>
+          <li class="card-text" id=gender name=gender><%= "Пол: #{@person.sex_person}" %></li>
+          <li class="card-text" id=date name=date><%= "Дата рождения: #{@person.date}" %></li>
+          <li class="card-text" id=cell name=cell><%= "Сотовый номер: #{@person.cell_phone}" %></li>
+          <li class="card-text" id=home name=home><%= "Домашний номер: #{@person.home_phone}" %></li>
+          <li class="card-text" id=address name=address><%= "Адрес: #{@person.address}" %></li>
+          <li class="card-text" id=status name=status><%= "Статус: #{@person.status}" %></li>
+          <br />
+          <div class="form-row">
+            <div class="form-group ">
+            <label for="home">Домашний номер</label>
+            <input type="number" class="form-control" id="home" name="home" placeholder="658912">
+            <% if @errors %>
+                <%= @errors[:space_home] %>
+            <% end %>
+            </div>
+          </div>  
+      </ul>
+    </div>
+  </div>
+</div>
+<button type="submit" class="btn btn-primary">Изменить</button>
+</form>

@@ -94,7 +94,6 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content('Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)')
   end
 
-  
   it 'Тест группировки по типу' do
     visit('/')
     name = find_by_id('name', match: :first).text.gsub('Имя: ', '')
@@ -113,7 +112,6 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content(type)
   end
 
-
   it 'Негативный тест группировки по типу' do
     visit('/')
     click_on('Группировка счетов по типу')
@@ -126,7 +124,6 @@ RSpec.describe 'Application', type: :feature do
     click_on('Список должников')
     expect(page).to have_content('Список должников')
   end
-
 
   it 'Тест на невыставленные счета' do
     visit('/')
@@ -151,7 +148,6 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content('Не найдено ни одного счёта(Квартплата) для данного человека')
   end
 
-
   it 'Негативный тест на невыставленные счета' do
     visit('/')
     click_on('Невыставленные счета')
@@ -159,7 +155,6 @@ RSpec.describe 'Application', type: :feature do
     select('12', from: 'month')
     click_on('Показать людей которым не выстален счёт')
   end
-
 
   it 'Тест на удаление' do
     visit('/')
@@ -184,5 +179,4 @@ RSpec.describe 'Application', type: :feature do
     click_on('Удалить')
     expect(page).to have_content('Число должно быть больше 0 и меньше максимального номера счёта')
   end
-
 end

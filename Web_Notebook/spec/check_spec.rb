@@ -21,5 +21,4 @@ RSpec.describe 'Application', type: :feature do
     expect(page).to have_content(surname)
     expect(page).to have_content(patronymic)
   end
-
 end

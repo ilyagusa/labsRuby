@@ -10,7 +10,7 @@
           <li class="card-text" id=patronymic name=patronymic><%= "Отчество: #{person.m_name}" %></li>
           <li class="card-text" id=gender name=gender><%= "Пол: #{person.sex_person}" %></li>
           <li class="card-text" id=date name=date><%= "Дата рождения: #{person.date}" %></li>
-          <li class="card-text" id=cell name=cell><%= "Мобильный номер: #{person.cell_phone}" %></li>
+          <li class="card-text" id=cell name=cell><%= "Сотовый номер: #{person.cell_phone}" %></li>
           <li class="card-text" id=home name=home><%= "Домашний номер: #{person.home_phone}" %></li>
           <li class="card-text" id=address name=address><%= "Адрес: #{person.address}" %></li>
           <li class="card-text" id=status name=status><%= "Статус: #{person.status}" %></li>
@@ -22,11 +22,18 @@
           <button type="submit" class="btn btn-danger">Удалить</button>
           </form>
           </div>
-          <div class="form-group col-md-3">
-          <form action="/delete_person" method="post">
-          <input type="text" name="index" style="display:none" value="<%= index %>" />
-          <button type="submit" class="btn btn-danger">Редактировать</button>
-          </form>
+          <div class="form-group col-md-3">  
+          <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Редактировать
+          </button>
+          </div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/edit_cell/<%=index%>">Сотовый номер</a>
+          <a class="dropdown-item" href="/edit_home/<%=index%>">Домашний номер</a>
+          <a class="dropdown-item" href="/edit_status/<%=index%>">Статус</a>
+          <a class="dropdown-item" href="/edit_address/<%=index%>">Адрес</a>
+          </div>
           </div>
           </div>
         <% end %>
