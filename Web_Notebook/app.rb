@@ -27,7 +27,7 @@ end
 post '/add_person' do
   date = '' + params['day'] + '.' + params['month'] + '.' + params['year']
   address = '' + params['street'] + ' ' + params['house']
-  @person = Person.new(params['name'], params['surname'], params['patronymic'], params['gender'],
+  @person = Person.new(params['name'], params['surname'], params['m_name'], params['gender'],
                        date, params['cell'], params['home'], address, params['status'])
   @errors = @person.check_error
   @errors[:negative_year] = 'В этом поле должно быть число > 0' if params['year'].to_i <= 0 || params['year'].empty?
@@ -56,13 +56,8 @@ end
 
 post '/edit_status/:index' do
   @person = settings.notebook.pers(params['index'])
-  @errors = {}
-  if @errors.empty?
-    settings.notebook.change_status(params['index'], params['status'])
-    redirect('/main')
-  else
-    erb :edit_status
-  end
+  settings.notebook.change_status(params['index'], params['status'])
+  redirect('/main')
 end
 
 get '/edit_address/:index' do
@@ -133,7 +128,12 @@ get '/event' do
 end
 
 post '/event' do
-  Commands.event(settings.notebook, params['event'], params['status'], params['mes'])
-
-  redirect('/main')
+  @errors = []
+  @errors << 'Не должно быть пустой строки' if params['event'].empty? || params['mes'].empty?
+  if @errors.empty?
+    Commands.event(settings.notebook, params['event'], params['status'], params['mes'])
+    redirect('/main')
+  else
+    erb :event
+  end
 end

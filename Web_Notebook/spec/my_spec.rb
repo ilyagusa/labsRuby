@@ -7,192 +7,119 @@ RSpec.describe 'Application', type: :feature do
     Capybara.app = Sinatra::Application.new
   end
 
-  it 'Should provide text when connecting to /' do
+  it 'Проверка присутствия контента' do
     visit('/')
-    expect(page).to have_content('Работа с коммунальными платежами')
+    expect(page).to have_content('Список контактов')
   end
 
-  it 'Проверка контента при переходе к show_utb' do
-    visit('/show_utb')
-    expect(page).to have_content('Работа с коммунальными платежами')
+  it 'Тест на вывод дней рождения' do
+    visit('/birthday')
+    select('5', from: 'month')
+    select('5', from: 'day')
+    click_on('Показать ближайшие дни рождения')
+    expect(page).to have_content('Ближайшие дни рождения')
   end
+
+  it 'Тест на удаление контакта' do
+    visit('/main')
+    cell = find_by_id('cell', match: :first).text
+    find_button('Удалить', match: :first).click
+    expect(page).not_to have_content(include(cell))
+  end
+
+  it 'Редактирование номера сотового телефона' do
+    visit('/')
+    cell = find_by_id('cell', match: :first).text
+    visit('/edit_cell/0')
+    expect(page).to have_content(cell)
+    fill_in('cell', with: '99999')
+    click_on('Изменить')
+    expect(page).to have_content('99999')
+  end
+
+  it 'Неверное редактирование номера сотового телефона' do
+    visit('/edit_cell/0')
+    click_on('Изменить')
+    expect(page).to have_content('В этом поле должно быть число >0')
+  end
+
+  it 'Редактирование номера домашнего телефона' do
+    visit('/')
+    home = find_by_id('home', match: :first).text
+    visit('/edit_home/0')
+    expect(page).to have_content(home)
+    fill_in('home', with: '88888')
+    click_on('Изменить')
+    expect(page).to have_content('88888')
+  end
+
+  it 'Неверное редактирование номера домашнего телефона' do
+    visit('/edit_home/0')
+    click_on('Изменить')
+    expect(page).to have_content('В этом поле должно быть число >0')
+  end
+
+  it 'Редактирование статуса' do
+    visit('/')
+    status = find_by_id('status', match: :first).text
+    visit('/edit_status/0')
+    expect(page).to have_content(status)
+    select('Коллега', from: 'status')
+    click_on('Изменить')
+    expect(page).to have_content('Коллега')
+  end
+
+  it 'Редактирование адреса' do
+    visit('/')
+    address = find_by_id('address', match: :first).text
+    visit('/edit_address/0')
+    expect(page).to have_content(address)
+    fill_in('street', with: 'molod')
+    fill_in('house', with: '123')
+    click_on('Изменить')
+    expect(page).to have_content('molod 123')
+  end
+
+  it 'Неправильное редактирование адреса' do
+    visit('/edit_address/0')
+    click_on('Изменить')
+    expect(page).to have_content('Это поле не должно быть пустым')
+    expect(page).to have_content('В этом поле должно быть число >0')
+  end
+
+  it 'Тест отправки поздравлений' do
+    visit('/event')
+    select('Коллега', from: 'status')
+    fill_in('event', with: 'День рождения')
+    fill_in('mes', with: 'Привет')
+    click_on('Отправить')
+  end
+
+  it 'Негативный тест отправки поздравлений' do
+    visit('/event')
+    click_on('Отправить')
+    expect(page).to have_content('Не должно быть пустой строки')
+  end
+
+
 
   it 'Тест на добавление счёта' do
-    visit('/')
-    click_on('Добавить счёт')
+    visit('/add_person')
     fill_in('surname', with: 'SURNAME_ABC_DEF')
     fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
-    fill_in('city', with: 'CITY_NEW')
+    fill_in('m_name', with: 'PATR_ABC_DEF')
+    fill_in('house', with: '1')
     fill_in('street', with: 'STREET_NEW')
-    fill_in('house', with: '12345')
-    fill_in('apartment', with: '98765')
+    fill_in('cell', with: '12345')
+    fill_in('home', with: '98765')
+    select('Женский', from: 'gender')
     select('5', from: 'month')
-    select('Квартплата', from: 'type')
-    fill_in('pay_am', with: '513762')
+    select('5', from: 'day')
+    fill_in('year', with: '1999')
+    select('Друг', from: 'status')
     click_on('Добавить')
-    expect(page).to have_content('NAME_ABC_DEF')
-    expect(page).to have_content('SURNAME_ABC_DEF')
-    expect(page).to have_content('PATR_ABC_DEF')
-    expect(page).to have_content('CITY_NEW')
-    expect(page).to have_content('STREET_NEW')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('98765')
-    expect(page).to have_content('5')
-    expect(page).to have_content('Квартплата')
-    expect(page).to have_content('513762')
   end
 
-  it 'Негативный тест на добавление' do
-    visit('/')
-    click_on('Добавить счёт')
-    expect(page).to have_content('Добавление счёта в общий список')
-    click_on('Добавить')
-    expect(page).to have_content('В этом поле должно быть положительное число!')
-    expect(page).to have_content('Это поле не должно быть пустым!')
-  end
 
-  it 'Тест на оплату' do
-    visit('/')
-    paid = find_by_id('paid', match: :first).text
-    click_on('Оплатить счёт', id: 'pay-mark-0')
-    expect(page).to have_content('Подробный запрос на оплату')
-    fill_in('paid', with: '1')
-    click_on('Оплатить')
-    expect(page).to have_content(paid.to_i + 1)
-  end
 
-  it 'Тест на оплату негативный' do
-    visit('/')
-    click_on('Оплатить счёт', id: 'pay-mark-0')
-    click_on('Оплатить')
-    expect(page).to have_content('Ошибка ввода!')
-  end
-
-  it 'Тест статистики' do
-    visit('/')
-    click_on('Статистика')
-    expect(page).to have_content('Статистика')
-  end
-
-  it 'Тест на вывод всех счетов человека' do
-    visit('/')
-    click_on('Вывести все счета человека')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
-    click_on('Показать все счета')
-  end
-
-  it 'Негативный тест на вывод всех счетов человека' do
-    visit('/')
-    click_on('Вывести все счета человека')
-    click_on('Показать все счета')
-    expect(page).to have_content('Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)')
-  end
-
-  it 'Тест группировки по типу' do
-    visit('/')
-    click_on('Группировка счетов по типу')
-    expect(page).to have_content('Группировка счетов для выбраного человека по типу счёта')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
-    click_on('Показать счета')
-    expect(page).to have_content('NAME_ABC_DEF')
-    expect(page).to have_content('SURNAME_ABC_DEF')
-    expect(page).to have_content('PATR_ABC_DEF')
-    expect(page).to have_content('CITY_NEW')
-    expect(page).to have_content('STREET_NEW')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('98765')
-    expect(page).to have_content('5')
-    expect(page).to have_content('Квартплата')
-    expect(page).to have_content('513762')
-  end
-
-  it 'Негативный тест группировки по типу' do
-    visit('/')
-    click_on('Группировка счетов по типу')
-    click_on('Показать счета')
-    expect(page).to have_content('Не найдено ни одного счёта для этого человека(Все поля должны быть заполнены!!!)')
-  end
-
-  it 'Тест списка должников' do
-    visit('/')
-    click_on('Список должников')
-    expect(page).to have_content('Список должников')
-  end
-
-  it 'Тест объединения счетов по типу' do
-    visit('/')
-    click_on('Добавить счёт')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('patronymic', with: 'PATR_ABC_DEF')
-    fill_in('city', with: 'CITY_NEW')
-    fill_in('street', with: 'STREET_NEW')
-    fill_in('house', with: '12345')
-    fill_in('apartment', with: '67821')
-    select('12', from: 'month')
-    select('Квартплата', from: 'type')
-    fill_in('pay_am', with: '1000')
-    click_on('Добавить')
-    click_on('Общий счёт для человека')
-    fill_in('surname', with: 'SURNAME_ABC_DEF')
-    fill_in('name', with: 'NAME_ABC_DEF')
-    fill_in('pat', with: 'PATR_ABC_DEF')
-    select('Квартплата', from: 'type')
-    click_on('Объединить счета')
-    expect(page).to have_content('Общий счёт')
-  end
-
-  it 'Негативный тест на объединение счетов' do
-    visit('/')
-    click_on('Общий счёт для человека')
-    click_on('Объединить счета')
-    expect(page).to have_content('Не найдено ни одного счёта(Квартплата) для данного человека')
-  end
-
-  it 'Тест на невыставленные счета' do
-    visit('/')
-    click_on('Невыставленные счета')
-    select('6', from: 'month')
-    select('Плата за телефон', from: 'type')
-    click_on('Показать людей которым не выстален счёт')
-    expect(page).to have_content('Список людей которым не выставлен счёт')
-  end
-
-  it 'Негативный тест на невыставленные счета' do
-    visit('/')
-    click_on('Невыставленные счета')
-    select('Квартплата', from: 'type')
-    select('12', from: 'month')
-    click_on('Показать людей которым не выстален счёт')
-    expect(page).not_to have_content('SURNAME_ABC_DEF')
-  end
-
-  it 'Тест на удаление' do
-    visit('/')
-    name = find_by_id('name', match: :first).text
-    surname = find_by_id('surname', match: :first).text
-    patronymic = find_by_id('patronymic', match: :first).text
-    month = find_by_id('month', match: :first).text
-    type = find_by_id('type', match: :first).text
-    pay_am = find_by_id('pay_am', match: :first).text
-    paid = find_by_id('paid', match: :first).text
-    click_on('Удалить счёт')
-    fill_in('index', with: '1')
-    click_on('Удалить')
-    expect(page).not_to have_content(include(name).and(include(surname).and(include(patronymic)
-    .and(include(month).and(include(type)
-    .and(include(pay_am).and(include(paid))))))))
-  end
-
-  it 'Негативный тест на удаление' do
-    visit('/')
-    click_on('Удалить счёт')
-    click_on('Удалить')
-    expect(page).to have_content('Число должно быть больше 0 и меньше максимального номера счёта')
-  end
 end

@@ -40,11 +40,4 @@ class Person
     @errors[:space_surname] = 'Это поле не должно быть пустым' if @surname.empty?
     @errors[:space_patronymic] = 'Это поле не должно быть пустым' if @m_name.empty?
   end
-
-  def to_s
-    str = "\nИмя: #{@name}\nФамилия: #{@surname}\nОтчество: #{@m_name}\nПол:#{@sex_person} \nДата рождения:#{@date}" \
-          "\nМобильный номер: #{@cell_phone}\nДомашний номер: #{@home_phone}" \
-          "\nАдрес: #{@address}\nСтатус: #{@status}"
-    str
-  end
 end

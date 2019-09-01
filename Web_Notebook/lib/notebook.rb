@@ -52,10 +52,6 @@ class Notebook
     invited
   end
 
-  def each
-    @list.each { |person| yield(person) }
-  end
-
   def each_with_index
     @list.each_with_index { |person, index| yield(person, index) }
   end
