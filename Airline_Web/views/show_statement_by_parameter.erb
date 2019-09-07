@@ -1,0 +1,43 @@
+<h2>Вывод заявок по параметрам</h2>
+<form method="post">
+<h3>Дата и время отправления</h3>
+  <div class="form-row">
+    <div class="form-group">
+    <label for="day_dep">День</label>
+    <input type="number" class="form-control" id="day_dep" name="day_dep" placeholder="21">
+    <% if @errors %>
+      <%= @errors[:day_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="month_dep">Месяц</label>
+    <input type="number" class="form-control" id="month_dep" name="month_dep" placeholder="12">
+    <% if @errors %>
+      <%= @errors[:month_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="year_dep">Год</label>
+    <input type="number" class="form-control" id="year_dep" name="year_dep" placeholder="2018">
+    <% if @errors %>
+      <%= @errors[:year] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+      <label for="hour_dep">Часы</label>
+      <input type="number" class="form-control" id="hour_dep" name="hour_dep" placeholder="12">
+      <% if @errors %>
+        <%= @errors[:h_dep] %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label for="min_dep">Минуты</label>
+      <input type="number" class="form-control" id="min_dep" name="min_dep" placeholder="45">
+      <% if @errors %> 
+        <%= @errors[:min_dep] %>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Вывести заявки</button>
+</form>

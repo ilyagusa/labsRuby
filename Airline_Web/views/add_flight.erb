@@ -1,0 +1,124 @@
+<h2>Добавление рейса в общий список</h2>
+<form method="post" >
+  <div class="form-row">
+    <div class="form-group ">
+      <label for="dep_air">Пункт отправления</label>
+      <input type="text" class="form-control" id="dep_air" name="dep_air" placeholder="Москва">
+      <% if @errors %>
+        <%= @errors[:departure_airport] %>
+      <% end %>
+    </div>
+    <div class="form-group ">
+      <label for="arr_air">Пункт назначения</label>
+      <input type="text" class="form-control" id="arr_air" name="arr_air" placeholder="Берлин">
+      <% if @errors %>
+        <%= @errors[:arrival_airport] %>
+      <% end %>
+    </div>
+  </div>
+  <h3>Дата и время отправления</h3>
+  <div class="form-row">
+    <div class="form-group">
+    <label for="day_dep">День</label>
+    <input type="number" class="form-control" id="day_dep" name="day_dep" placeholder="21">
+    <% if @errors %>
+      <%= @errors[:day_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="month_dep">Месяц</label>
+    <input type="number" class="form-control" id="month_dep" name="month_dep" placeholder="12">
+    <% if @errors %>
+      <%= @errors[:month_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="year_dep">Год</label>
+    <input type="number" class="form-control" id="year_dep" name="year_dep" placeholder="2018">
+    <% if @errors %>
+      <%= @errors[:year] %>
+    <% end %>
+</div>
+  </div>
+    <div class="form-group">
+      <label for="hour_dep">Часы</label>
+      <input type="number" class="form-control" id="hour_dep" name="hour_dep" placeholder="12">
+      <% if @errors %>
+        <%= @errors[:h_dep] %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label for="min_dep">Минуты</label>
+      <input type="number" class="form-control" id="min_dep" name="min_dep" placeholder="45">
+      <% if @errors %> 
+        <%= @errors[:min_dep] %>
+      <% end %>
+    </div>
+  </div>
+
+  <h3>Дата и время прибытия</h3>
+    <div class="form-row">
+      <div class="form-group">
+      <label for="day_arr">День</label>
+      <input type="number" class="form-control" id="day_arr" name="day_arr" placeholder="22">
+      <% if @errors %>
+        <%= @errors[:day_arr] %>
+      <% end %>
+    </div>
+      <div class="form-group">
+      <label for="month_arr">Месяц</label>
+      <input type="number" class="form-control" id="month_arr" name="month_arr" placeholder="12">
+      <% if @errors %>
+        <%= @errors[:month_arr] %>
+      <% end %>
+    </div>
+      <div class="form-group">
+      <label for="year_arr">Год</label>
+      <input type="number" class="form-control" id="year_arr" name="year_arr" placeholder="2018">
+      <% if @errors %>
+        <%= @errors[:year] %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label for="hour_arr">Часы</label>
+      <input type="number" class="form-control" id="hour_arr" name="hour_arr" placeholder="08">
+      <% if @errors %>
+        <%= @errors[:h_arr] %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label for="min_arr">Минуты</label>
+      <input type="number" class="form-control" id="min_arr" name="min_arr" placeholder="37">
+      <% if @errors %> 
+        <%= @errors[:min_arr] %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <label for="type">Вид самолёта</label>
+  <select id="type" name="type" class="form-control">
+    <option>Боинг-542</option>
+    <option>Ту-154</option>
+    <option>Суперджет-100</option>
+  </select>
+  </div>
+  
+  <div class="form-group ">
+    <label for="cost">Стоимость билета</label>
+    <input type="number" class="form-control" id="cost" name="cost" placeholder="5000">
+    <% if @errors %>
+      <%= @errors[:cost_neg] %>
+    <% end %>
+  </div>
+
+  <div class="form-group ">
+    <label for="num_id">Номер рейса</label>
+    <input type="number" class="form-control" id="num_id" name="num_id" placeholder="224">
+    <% if @errors %>
+      <%= @errors[:number_neg] %>
+    <% end %>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Добавить</button>
+</form>

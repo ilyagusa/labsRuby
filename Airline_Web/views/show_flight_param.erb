@@ -1,0 +1,21 @@
+<h2>Список рейсов по назначенным параметрам</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <% @flight_by_param.each_with_index do |flight,index| %>
+          <h3><%= "Рейс №#{flight.number}" %></h3>
+          <li class="card-text" id=departure_airport name=departure_airport><%= "Аэропорт отправления: #{flight.departure_airport}" %></li>
+          <li class="card-text" id=arrival_airport name=arrival_airport><%= "Аэропорт прибытия: #{flight.arrival_airport}" %></li>
+          <li class="card-text" id=time_departure name=time_departure><%= "Время отправления: #{flight.time_departure}" %></li>
+          <li class="card-text" id=time_arrival name=time_arrival><%= "Время прибытия: #{flight.time_arrival}" %></li>
+          <li class="card-text" id=date_departure name=date_departure><%= "Дата отправления: #{flight.date_departure}" %></li>
+          <li class="card-text" id=date_arrival name=date_arrival><%= "Дата прибытия: #{flight.date_arrival}" %></li>
+          <li class="card-text" id=cost name=cost><%= "Стоимость билета: #{flight.cost}" %></li>
+          <li class="card-text" id=type name=type><%= "Тип самолёта: #{flight.type}" %></li>
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

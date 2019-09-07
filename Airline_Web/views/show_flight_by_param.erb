@@ -1,0 +1,45 @@
+<h2>Вывод рейсов по заданному параметру</h2>
+<form method="post" >
+  <div class="form-row">
+    <div class="form-group ">
+      <label for="dep_air">Пункт отправления</label>
+      <input type="text" class="form-control" id="dep_air" name="dep_air" placeholder="Москва">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
+    </div>
+    <div class="form-group ">
+      <label for="arr_air">Пункт назначения</label>
+      <input type="text" class="form-control" id="arr_air" name="arr_air" placeholder="Берлин">
+      <% if @errors %>
+        <%= @errors[:space] %>
+      <% end %>
+    </div>
+  </div>
+  <h3>Дата и время отправления</h3>
+  <div class="form-row">
+    <div class="form-group">
+    <label for="day_dep">День</label>
+    <input type="number" class="form-control" id="day_dep" name="day_dep" placeholder="21">
+    <% if @errors %>
+      <%= @errors[:day_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="month_dep">Месяц</label>
+    <input type="number" class="form-control" id="month_dep" name="month_dep" placeholder="12">
+    <% if @errors %>
+      <%= @errors[:month_dep] %>
+    <% end %>
+  </div>
+    <div class="form-group">
+    <label for="year_dep">Год</label>
+    <input type="number" class="form-control" id="year_dep" name="year_dep" placeholder="2018">
+    <% if @errors %>
+      <%= @errors[:year] %>
+    <% end %>
+    </div>
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Показать</button>
+</form>
