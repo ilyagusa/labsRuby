@@ -7,6 +7,7 @@ require_relative 'lib/list_flight'
 require_relative 'lib/statement'
 require_relative 'lib/list_statement'
 require_relative 'lib/input'
+require_relative 'lib/command'
 
 configure do
   set :flight_db, Input.read_file_flight
@@ -61,7 +62,7 @@ post '/add_flight' do
   date_dep = '' + params['day_dep'] + '.' + params['month_dep'] + '.' + params['year_dep']
   date_arr = '' + params['day_arr'] + '.' + params['month_arr'] + '.' + params['year_arr']
   flight = Flight.new(params['dep_air'], params['arr_air'], params['num_id'],
-                      time_dep, time_arr, params['cost'], date_dep, date_arr, params['type'])
+                      time_dep, time_arr, date_dep, date_arr, params['cost'], params['type'])
   @errors = flight.check_field
   @errors[:day_dep] = d if params['day_dep'].to_i < 1 || params['day_dep'].to_i > 31
   @errors[:day_arr] = d if params['day_arr'].to_i < 1 || params['day_arr'].to_i > 31
@@ -146,8 +147,39 @@ post '/show_flight_by_parameter' do
   end
 end
 
-
 get '/show_statement_by_parameter' do
-  erb:show_statement_by_parameter
+  erb :show_statement_by_parameter
 end
 
+post '/show_statement_by_parameter' do
+  @statement_by_param = ListStatement.new
+  @errors = {}
+  t_d = '' + params['hour_dep'] + ':' + params['min_dep']
+  d_d = '' + params['day_dep'] + '.' + params['month_dep'] + '.' + params['year_dep']
+  h = 'Здесь должно быть число 0<=x<=24'
+  m = 'Здесь должно быть число 0<=x<=60'
+  d = 'Здесь должно быть число от 1 до 31 '
+  mo = 'Здесь должно быть число от 1 до 12 '
+  @errors[:min_dep] = m if params['min_dep'].to_i.negative? || params['min_dep'].to_i > 60 || params['min_dep'].empty?
+  @errors[:h_dep] = h if params['hour_dep'].to_i.negative? || params['hour_dep'].to_i > 60 || params['hour_dep'].empty?
+  @errors[:year] = 'Неподходящий год' if params['year_dep'].to_i < 2012
+  @errors[:month_dep] = mo if params['month_dep'].to_i < 1 || params['month_dep'].to_i > 12
+  @errors[:day_dep] = d if params['day_dep'].to_i < 1 || params['day_dep'].to_i > 31
+  settings.statement_db.each do |stat|
+    @statement_by_param.add(stat) if stat.time_departure == t_d && stat.date_departure == d_d
+  end
+  if @errors.empty?
+    erb :show_stat_param
+  else
+    erb :show_statement_by_parameter
+  end
+end
+
+get '/flight_for_statement' do
+end
+
+post '/flight_for_statement' do
+  @flight_for_statement = Command.flight_for_param(settings.flight_db, settings.statement_db, params['index'].to_i)
+  @void = 'Рейсов для данной заявки не найдено' if @flight_for_statement.empty?
+  erb :flight_for_statement
+end

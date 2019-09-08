@@ -11,7 +11,7 @@ class ListStatement
   end
 
   def each
-    @list.each { |_statement| yield flight }
+    @list.each { |statement| yield statement }
   end
 
   def get_statement(index)

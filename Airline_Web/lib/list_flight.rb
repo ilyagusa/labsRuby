@@ -22,6 +22,10 @@ class ListFlight
     @list.size
   end
 
+  def empty?
+    @list.empty?
+  end
+
   def each_with_index
     @list.each_with_index { |flight, index| yield flight, index }
   end

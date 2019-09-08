@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col">
       <ul>
-        <% @statement_db.each_with_index do |statement,index| %>
-          <h3><%= "Заявка №#{statement.id}" %></h3>
+        <% @statement_by_param.each_with_index do |statement,index| %>
+          <h3><%= "Рейс №#{statement.id}" %></h3>
           <li class="card-text" id=name name=name><%= "Имя: #{statement.name}" %></li>
           <li class="card-text" id=surname name=surname><%= "Фамилия: #{statement.surname}" %></li>
           <li class="card-text" id=departure_airport name=departure_airport><%= "Аэропорт отправления: #{statement.departure_airport}" %></li>
@@ -13,16 +13,6 @@
           <li class="card-text" id=time_departure name=time_departure><%= "Время отправления: #{statement.time_departure}" %></li>          <br />
           <div class="form-row">
           <div class="form-group col-md-3">
-          <form action="/delete_statement" method="post" >
-          <input type="text" name="index" style="display:none" value="<%= index %>" />
-          <button type="submit" class="btn btn-danger">Удалить</button>
-          </form>
-          </div>
-          <div class="form-group col-md-3">
-          <form action="/flight_for_statement" method="post" >
-          <input type="text" name="index" style="display:none" value="<%= index %>" />
-          <button type="submit" class="btn btn-danger">Найти рейсы</button>
-          </form>
           </div>
           </div>
         <% end %>
