@@ -92,13 +92,14 @@ post '/add_statement' do
   m = 'Здесь должно быть число 0<=x<=60'
   d = 'Здесь должно быть число от 1 до 31 '
   mo = 'Здесь должно быть число от 1 до 12 '
+  st = Statement.new(params['dep_air'], params['arr_air'], params['id'], t_d, d_d, params['name'], params['surname'])
+  @errors = st.check_field
   @errors[:min_dep] = m if params['min_dep'].to_i.negative? || params['min_dep'].to_i > 60 || params['min_dep'].empty?
   @errors[:h_dep] = h if params['hour_dep'].to_i.negative? || params['hour_dep'].to_i > 60 || params['hour_dep'].empty?
   @errors[:year] = 'Неподходящий год' if params['year_dep'].to_i < 2012
   @errors[:month_dep] = mo if params['month_dep'].to_i < 1 || params['month_dep'].to_i > 12
   @errors[:day_dep] = d if params['day_dep'].to_i < 1 || params['day_dep'].to_i > 31
   @errors[:space] = 'Здесь не должно быть пусто' if params['name'].empty? || params['surname'].empty?
-  st = Statement.new(params['dep_air'], params['arr_air'], params['id'], t_d, d_d, params['name'], params['surname'])
   if @errors.empty?
     settings.statement_db.add(st)
     redirect('/show_statement')

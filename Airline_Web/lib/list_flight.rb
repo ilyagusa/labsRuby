@@ -33,4 +33,10 @@ class ListFlight
   def remove(index)
     @list.delete_at(index.to_i)
   end
+
+  def inc_id(id)
+    @list.each do |flight|
+      return true if flight.number == id
+    end
+  end
 end

@@ -35,4 +35,12 @@ class ListStatement
       @list.delete_at(index.to_i) if flight.departure_airport == dep && flight.arrival_airport == air
     end
   end
+
+  
+  def inc_id(id)
+    @list.each do |st|
+      return true if st.id == id.to_i
+    end    
+  end
+
 end
