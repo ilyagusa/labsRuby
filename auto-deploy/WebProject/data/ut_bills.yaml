@@ -1,0 +1,65 @@
+- City: Шопша
+  Street: Молодежная
+  House: 15
+  Apartment: 4
+  Type: Плата за телефон
+  Payment_amount: 5000
+  Month: 4
+  Name: Илья
+  Surname: Гусев
+  Patronymic: Сергеевич
+  
+- City: Ярославль
+  Street: Строителей
+  House: 22
+  Apartment: 46
+  Type: Квартплата
+  Payment_amount: 3500
+  Month: 7
+  Name: Анна
+  Surname: Кочигина
+  Patronymic: Михайловна
+
+- City: Шопша
+  Street: Новая
+  House: 12
+  Apartment: 1
+  Type: Плата за телефон
+  Payment_amount: 2000
+  Month: 8
+  Name: Илья
+  Surname: Гусев
+  Patronymic: Сергеевич
+
+- City: Ярославль
+  Street: Новая
+  House: 10
+  Apartment: 42
+  Type: Плата за электричество
+  Payment_amount: 2800
+  Month: 4
+  Name: Илья
+  Surname: Гусев
+  Patronymic: Сергеевич
+
+- City: Шопша
+  Street: Молодежная
+  House: 15
+  Apartment: 4
+  Type: Квартплата
+  Payment_amount: 6100
+  Month: 4
+  Name: Илья
+  Surname: Гусев  
+  Patronymic: Сергеевич
+
+- City: Шопша
+  Street: Молодежная
+  House: 15
+  Apartment: 4
+  Type: Плата за электричество
+  Payment_amount: 3900
+  Month: 4
+  Name: Тихомиров
+  Surname: Евгений
+  Patronymic: Дмитриевич

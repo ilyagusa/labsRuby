@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <h3><%= @ut_bills_db[0].fio.surname %> <%= @ut_bills_db[0].fio.name %> <%= @ut_bills_db[0].fio.patronymic %></h3>
+        <% @ut_bills_db.each do |ut_bill| %>
+          <li><%= "Тип счёта: #{ut_bill.type}" %></li>
+          <li><%= "Адрес: НП:#{ut_bill.address.city} ул.#{ut_bill.address.street} д.#{ut_bill.address.house} кв.#{ut_bill.address.apartment} " %></li>
+          <li><%= "Месяц платежа: #{ut_bill.month}" %></li>
+          <li><%= "Внесённая сумма оплаты: #{ut_bill.paid}" %></li>
+          <li><%= "Осталось выплатить: #{ut_bill.pay_am.to_i-ut_bill.paid}" %></li>
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

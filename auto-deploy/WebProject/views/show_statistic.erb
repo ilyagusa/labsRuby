@@ -1,0 +1,18 @@
+<h2>Статистика</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+            <li><%= "Количество уникальных людей: #{@hash_stat[:uniq_person]}" %></li>
+            <li><%= "Средняя сумма для оплаты: #{@hash_stat[:avg_pay_am]}" %></li>
+            <li><%= "Средняя внесённая сумма: #{@hash_stat[:avg_paid]}" %></li>           
+            <li><%= "Самый распространённый тип счёта: #{@hash_stat[:most_common_type]}" %></li>        
+            <li><%= "Cредняя сумма для оплаты по самому распространённому типу счёта: #{@hash_stat[:avg_pay_am_for_type]}" %></li>                  
+          <br />
+      </ul>
+    </div>
+  </div>
+</div>
+<% if @errors%>
+<h2><%= @errors %></h2>
+<% end %>

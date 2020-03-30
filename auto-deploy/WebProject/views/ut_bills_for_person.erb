@@ -1,0 +1,20 @@
+<h2>Все счета человека</h2>
+<form method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="surname">Фамилия</label>
+      <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
+      <% if @errors %>
+        <%= @errors %>
+      <% end %>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="name">Имя</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="patronymic">Отчество</label>
+    <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="Отчество">
+  </div>
+  <button type="submit" class="btn btn-primary">Показать все счета</button>
+</form>

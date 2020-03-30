@@ -1,0 +1,27 @@
+<h2>Список счетов</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <% @ut_bills_db.each_with_index do |ut_bills,index| %>
+          <h3><%= "Счёт №#{index+1}" %></h3>
+          <li class="card-text" id=surname name=surname><%= "Фамилия: #{ut_bills.fio.surname}" %></li>
+          <li class="card-text" id=name name=name><%= "Имя: #{ut_bills.fio.name}" %></li>
+          <li class="card-text" id=patronymic name=patronymic><%= "Отчество: #{ut_bills.fio.patronymic}" %></li>
+          <li class="card-text" id=address name=address><%= "Адрес: НП:#{ut_bills.address.city} ул.#{ut_bills.address.street} д.#{ut_bills.address.house} кв.#{ut_bills.address.apartment} " %></li>
+          <li class="card-text" id=pay_am name=pay_am><%= "Общая сумма оплаты: #{ut_bills.pay_am}" %></li>  
+          <li class="card-text" id=paid name=paid><%= "Внесённая сумма оплаты: #{ut_bills.paid}" %></li>
+          <li class="card-text" id=type name=type><%= "Тип счёта: #{ut_bills.type}" %></li>
+          <li class="card-text" id=month name=month><%= "Месяц платежа: #{ut_bills.month}" %></li>
+          <% if ut_bills.paid != ut_bills.pay_am.to_i %>
+          <a class="btn btn-primary btn-sm" href='/paid/<%=index%>' id="pay-mark-<%= index %>" role="button" >Оплатить счёт</a>
+          <% end %>
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% if @ut_bills_db.empty %>
+  <div class="p-3 mb-2 bg-danger text-white">Список пуст</div>
+<% end %>

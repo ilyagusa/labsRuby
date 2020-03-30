@@ -1,0 +1,19 @@
+<h2>Список должников</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <% @debt_db.each do |debt| %>
+            <li><%= "Фамилия: #{debt.fio.surname}" %></li>
+            <li><%= "Имя: #{debt.fio.name}" %></li>
+            <li><%= "Отчество: #{debt.fio.patronymic}" %></li>           
+            <li><%= "Тип счёта: #{debt.type}" %></li>             
+          <br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% if @debt_db.empty?%>
+<h2>Список пуст</h2>
+<% end %>

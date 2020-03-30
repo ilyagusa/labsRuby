@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <h3>Подробный запрос на оплату</h3>
+        <li><%= "Фамилия: #{@ut_bill.fio.surname}" %></li>
+        <li><%= "Имя: #{@ut_bill.fio.name}" %></li>
+        <li><%= "Отчество: #{@ut_bill.fio.patronymic}" %></li>
+        <li><%= "Адрес: НП:#{@ut_bill.address.city} ул.#{@ut_bill.address.street} д.#{@ut_bill.address.house} кв.#{@ut_bill.address.apartment} " %></li>
+        <li><%= "Общая сумма оплаты: #{@ut_bill.pay_am}" %></li>  
+        <li><%= "Внесённая сумма оплаты: #{@ut_bill.paid}" %></li>
+        <li><%= "Осталось выплатить: #{@ut_bill.pay_am.to_i-@ut_bill.paid}" %></li>
+        <li><%= "Тип счёта: #{@ut_bill.type}" %></li>
+        <li><%= "Месяц платежа: #{@ut_bill.month}" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<form method="post">
+  <div class="form-group">
+    <label for="paid">Сумма для внесения</label>
+    <input type="number" class="form-control" id="paid" name="paid" placeholder="1000">
+    <% if @errors %>
+    <%= "Ошибка ввода!" %>
+      <%= @errors%>
+    <% end %>
+  </div>
+  <button type="submit" class="btn btn-primary">Оплатить</button>
+</form>

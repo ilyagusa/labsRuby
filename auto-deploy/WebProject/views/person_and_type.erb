@@ -1,0 +1,28 @@
+<h2>Объеденить все счета одного тип для выбранного человека</h2>
+<form method="post">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="surname">Фамилия</label>
+      <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамилия">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="name">Имя</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+    </div>
+    <div class="form-group col-md-3">
+    <label for="pat">Отчество</label>
+    <input type="text" class="form-control" id="pat" name="pat" placeholder="Отчество">
+    </div>
+    <div class="form-group col-md-3">
+    <label for="type">Вид счета</label>
+    <select id="type" name="type" class="form-control">
+      <option>Квартплата</option>
+      <option>Плата за электричество</option>
+      <option>Плата за телефон</option>
+    </select>
+    </div>
+  <button type="submit" class="btn btn-primary">Объединить счета</button>
+</form>
+<% if @errors %>
+<%= @errors %>
+<% end %>
