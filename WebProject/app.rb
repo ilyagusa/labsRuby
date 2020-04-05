@@ -10,6 +10,7 @@ require_relative 'lib/input'
 
 configure do
   set :ut_bills_db, Input.read_file_ut_bills
+  set :static, false 
 end
 
 get '/' do

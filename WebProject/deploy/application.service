@@ -1,0 +1,12 @@
+[Unit]
+Description = The simple app
+
+
+[Service]
+Environment = PATH=/opt/rubies/ruby-2.6.5/bin:/usr/local/bin:/use/bin:/bin
+Type = simple
+WorkingDirectory = /srv/ruby-app
+ExecStart = /opt/rubies/ruby-2.6.5/bin/bundle exec rackup -o 0.0.0.0 config.ru
+
+[Install]
+WantedBy = multi-user.target
